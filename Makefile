@@ -5,7 +5,7 @@
 # ==============================================================================
 
 .DEFAULT_GOAL := help
-.PHONY: help install clean fresh dev dev-api dev-web \
+.PHONY: help install clean fresh free-ports dev dev-api dev-web \
         docker-up docker-down docker-build docker-restart docker-logs docker-logs-all docker-ps docker-shell docker-mongo docker-redis \
         build build-api build-web typecheck test test-watch lint \
         logs-api logs-error logs-controllers logs-controller logs-clear
@@ -22,7 +22,8 @@ help: ## Display this help menu with all available commands
 	@echo Development ^& Local Runtime:
 	@echo   make dev              - Run both Backend API (8000) and Frontend Web (5000)
 	@echo   make dev-api          - Run NestJS API on port 8000 with watch mode
-	@echo   make dev-web          - Run Next.js Web on port 5000
+	@echo   make dev-web          - Run Next.js Web on port 5000 (auto-frees port 5000)
+	@echo   make free-ports       - Kill any orphaned background processes holding 5000 or 8000
 	@echo.
 	@echo Docker Backend ^& Database (with Hot Reload):
 	@echo   make docker-up        - Start Docker Backend API, MongoDB 8, and Redis
@@ -70,6 +71,9 @@ clean: ## Clean build artifacts, caches, and output directories
 
 fresh: clean install ## Perform clean install of all dependencies
 
+free-ports: ## Free frontend port 5000 from orphaned node processes
+	@bun -e "const { execSync } = require('child_process'); try { if (process.platform === 'win32') { const out = execSync('netstat -ano | findstr :5000').toString(); const lines = out.split('\n').filter(l => l.includes('LISTENING')); const pids = new Set(lines.map(l => l.trim().split(/\s+/).pop()).filter(Boolean)); for (const pid of pids) { if (pid && pid !== '0') { try { execSync('taskkill /F /PID ' + pid); console.log('Freed port 5000 (killed PID ' + pid + ')'); } catch {} } } } else { execSync('lsof -ti:5000 | xargs kill -9 2>/dev/null || true'); } } catch {}"
+
 # ------------------------------------------------------------------------------
 # LOCAL RUNTIME (OUTSIDE DOCKER)
 # ------------------------------------------------------------------------------
@@ -79,7 +83,8 @@ dev: ## Run full stack locally (API on 8000, Web on 5000)
 dev-api: ## Run API locally on port 8000 with live watch reload
 	bun --filter api dev
 
-dev-web: ## Run Web frontend locally on port 5000
+dev-web: ## Run Web frontend locally on port 5000 (auto-clears port 5000 first)
+	@bun -e "const { execSync } = require('child_process'); try { if (process.platform === 'win32') { const out = execSync('netstat -ano | findstr :5000').toString(); const lines = out.split('\n').filter(l => l.includes('LISTENING')); const pids = new Set(lines.map(l => l.trim().split(/\s+/).pop()).filter(Boolean)); for (const pid of pids) { if (pid && pid !== '0') { try { execSync('taskkill /F /PID ' + pid); } catch {} } } } else { execSync('lsof -ti:5000 | xargs kill -9 2>/dev/null || true'); } } catch {}"
 	bun --filter web dev
 
 # ------------------------------------------------------------------------------
