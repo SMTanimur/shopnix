@@ -11,8 +11,8 @@ import type {
 } from '@shopnix/types';
 import { InboxConversation, type InboxConversationDocument } from './schemas/inbox-conversation.schema';
 import { InboxMessage, type InboxMessageDocument } from './schemas/inbox-message.schema';
-import { Order, type OrderDocument } from '../orders/schemas/order.schema';
-import { Customer, type CustomerDocument } from '../customers/schemas/customer.schema';
+import { Order, type OrderDocument } from '../orders/order.schema';
+import { Customer, type CustomerDocument } from '../customers/customer.schema';
 import { WhatsAppGateway } from './gateways/whatsapp.gateway';
 import { MessengerGateway } from './gateways/messenger.gateway';
 import { AIModelRouterService } from '../ai/router/ai-model-router.service';

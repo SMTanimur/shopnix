@@ -14,6 +14,11 @@ import {
   PlusCircle,
   Search,
   X,
+  Store,
+  MessageSquare,
+  Bot,
+  Workflow,
+  Cpu,
 } from 'lucide-react';
 import { useUIStore } from '../../../stores/ui.store';
 
@@ -48,9 +53,14 @@ export function CommandPalette() {
     { label: 'All Products', icon: Package, path: '/products' },
     { label: 'Create New Product', icon: PlusCircle, path: '/products/new' },
     { label: 'Orders & Shipments', icon: ShoppingCart, path: '/orders' },
+    { label: 'Multi-Store Integrations', icon: Store, path: '/stores' },
+    { label: 'Unified Omnichannel Inbox', icon: MessageSquare, path: '/inbox' },
     { label: 'Warehouse Inventory', icon: Boxes, path: '/inventory' },
     { label: 'Customers & CRM', icon: Users, path: '/customers' },
     { label: 'Courier Logistics', icon: Truck, path: '/couriers' },
+    { label: 'AI Operations Assistant', icon: Bot, path: '/ai-assistant' },
+    { label: 'Visual Workflow Automations', icon: Workflow, path: '/automations' },
+    { label: 'Autonomous AI Agents', icon: Cpu, path: '/ai-agents' },
     { label: 'Business Analytics', icon: BarChart3, path: '/analytics' },
     { label: 'Store Settings', icon: Settings, path: '/settings' },
   ];

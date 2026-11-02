@@ -33,13 +33,13 @@ export class StoreIntegration {
   sync_interval_minutes: number;
 
   @Prop({ default: null })
-  last_synced_at: Date;
+  last_synced_at: Date | null;
 
   @Prop({ default: null, enum: ['success', 'failed', 'partial', null] })
-  last_sync_status: string;
+  last_sync_status: string | null;
 
   @Prop({ default: null })
-  last_sync_error: string;
+  last_sync_error: string | null;
 
   @Prop({ default: 0 })
   product_count: number;

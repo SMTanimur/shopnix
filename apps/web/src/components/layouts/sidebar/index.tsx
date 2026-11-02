@@ -15,6 +15,11 @@ import {
   ChevronLeft,
   ChevronRight,
   Sparkles,
+  Store,
+  MessageSquare,
+  Bot,
+  Workflow,
+  Cpu,
 } from 'lucide-react';
 import { useUIStore } from '../../../stores/ui.store';
 import { cn } from '@shopnix/utils';
@@ -27,9 +32,14 @@ export function Sidebar() {
     { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
     { label: 'Products', href: '/products', icon: Package },
     { label: 'Orders', href: '/orders', icon: ShoppingCart },
+    { label: 'Stores', href: '/stores', icon: Store },
+    { label: 'Unified Inbox', href: '/inbox', icon: MessageSquare },
     { label: 'Inventory', href: '/inventory', icon: Boxes },
     { label: 'Customers', href: '/customers', icon: Users },
     { label: 'Couriers', href: '/couriers', icon: Truck },
+    { label: 'AI Assistant', href: '/ai-assistant', icon: Bot },
+    { label: 'Automations', href: '/automations', icon: Workflow },
+    { label: 'AI Agents', href: '/ai-agents', icon: Cpu },
     { label: 'Analytics', href: '/analytics', icon: BarChart3 },
     { label: 'Settings', href: '/settings', icon: Settings },
   ];

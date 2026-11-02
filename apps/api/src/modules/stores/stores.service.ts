@@ -10,8 +10,8 @@ import type {
 } from '@shopnix/types';
 import { StoreIntegration, type StoreIntegrationDocument } from './schemas/store-integration.schema';
 import { StoreSyncLog, type StoreSyncLogDocument } from './schemas/store-sync-log.schema';
-import { Product, type ProductDocument } from '../products/schemas/product.schema';
-import { Order, type OrderDocument } from '../orders/schemas/order.schema';
+import { Product, type ProductDocument } from '../products/product.schema';
+import { Order, type OrderDocument } from '../orders/order.schema';
 import { ShopifyConnector } from './connectors/shopify.connector';
 import { WooCommerceConnector } from './connectors/woocommerce.connector';
 import { CustomApiConnector } from './connectors/custom-api.connector';
@@ -279,21 +279,21 @@ export class StoresService {
       log.items_created = itemsCreated;
       log.items_updated = itemsUpdated;
       log.items_failed = errors.length;
-      log.errors = errors;
+      log.errors = errors as any;
       log.duration_ms = durationMs;
       log.completed_at = new Date();
       await log.save();
 
       store.last_synced_at = new Date();
       store.last_sync_status = log.status;
-      store.last_sync_error = errors.length > 0 ? errors[0]?.message : null;
+      store.last_sync_error = errors.length > 0 ? (errors[0]?.message ?? null) : null;
       store.product_count = await this.productModel.countDocuments({ organization_id: store.organization_id });
       store.order_count = await this.orderModel.countDocuments({ organization_id: store.organization_id });
       await store.save();
     } catch (err: any) {
       log.status = 'failed';
       log.duration_ms = Date.now() - startTime;
-      log.errors = [{ message: err.message }];
+      log.errors = [{ message: err.message }] as any;
       log.completed_at = new Date();
       await log.save();
 
