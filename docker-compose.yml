@@ -20,20 +20,36 @@ services:
       - JWT_REFRESH_SECRET=dev-refresh-secret-key-shopnix-development
       - JWT_REFRESH_EXPIRATION=7d
       - ENCRYPTION_KEY=shopnix-dev-encryption-key-32ch
-      # Cross-platform polling for instantaneous real-time reload on Windows host file changes
-      - TSC_WATCHFILE=PriorityPollingInterval
-      - TSC_WATCHDIRECTORY=DynamicPriorityPolling
-      - CHOKIDAR_USEPOLLING=true
-      - CHOKIDAR_INTERVAL=1000
-      - WATCHPACK_POLLING=true
       - LOG_DIR=/app/apps/api/logs
-    volumes:
-      # Mount application source for live real-time code reloading without restarting
-      - ./apps/api:/app/apps/api
-      - ./packages:/app/packages
-      # Isolate node_modules to preserve container Linux dependencies
-      - /app/node_modules
-      - /app/apps/api/node_modules
+    # ---------------------------------------------------------------------------
+    # NO bind mounts for source code.
+    #
+    # WHY: The workspace lives under "c:\tanim\New folder\shopnix".
+    #      Docker Desktop for Windows cannot create bind-mount paths when a
+    #      parent directory name contains a space.  The daemon tries:
+    #        mkdir /run/desktop/mnt/host/c/tanim/New folder/shopnix
+    #      which splits on the space and fails with "file exists" or I/O error.
+    #
+    # HOW live-reload works instead:
+    #   • `make docker-dev`  uses `docker compose watch` (Compose file watch)
+    #     which syncs file changes into the running container without bind mounts.
+    #   • `make docker-build` rebuilds the image after larger changes.
+    # ---------------------------------------------------------------------------
+    develop:
+      watch:
+        # Sync API source files into the container on save
+        - action: sync
+          path: ./apps/api/src
+          target: /app/apps/api/src
+        # Sync shared packages on save
+        - action: sync
+          path: ./packages
+          target: /app/packages
+        # Rebuild container when dependencies change
+        - action: rebuild
+          path: ./apps/api/package.json
+        - action: rebuild
+          path: ./package.json
     depends_on:
       mongo:
         condition: service_healthy

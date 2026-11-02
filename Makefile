@@ -6,7 +6,7 @@
 
 .DEFAULT_GOAL := help
 .PHONY: help install clean fresh free-ports dev dev-api dev-web \
-        docker-up docker-down docker-build docker-restart docker-logs docker-logs-all docker-ps docker-shell docker-mongo docker-redis \
+        docker-up docker-down docker-build docker-rebuild docker-dev docker-restart docker-logs docker-logs-all docker-ps docker-shell docker-mongo docker-redis \
         build build-api build-web typecheck test test-watch lint \
         logs-api logs-error logs-controllers logs-controller logs-clear
 
@@ -29,6 +29,8 @@ help: ## Display this help menu with all available commands
 	@echo   make docker-up        - Start Docker Backend API, MongoDB 8, and Redis
 	@echo   make docker-down      - Stop all Docker containers
 	@echo   make docker-build     - Rebuild Docker Backend image (without cache)
+	@echo   make docker-rebuild   - Full clean rebuild (prune + build + up)
+	@echo   make docker-dev       - Start Docker with live file-sync (compose watch)
 	@echo   make docker-restart   - Restart the Backend API container
 	@echo   make docker-logs      - Tail live Backend API Docker logs
 	@echo   make docker-logs-all  - Tail logs from all Docker containers
@@ -98,6 +100,14 @@ docker-down: ## Stop and remove all containers
 
 docker-build: ## Rebuild Docker containers from scratch
 	docker compose build --no-cache
+
+docker-rebuild: ## Full clean rebuild: prune stale volumes + rebuild image + start
+	docker compose down --remove-orphans
+	docker compose build --no-cache
+	docker compose up -d
+
+docker-dev: ## Start Docker with live file-sync using compose watch (no bind mounts)
+	docker compose up --watch
 
 docker-restart: ## Restart Backend API container
 	docker compose restart api
