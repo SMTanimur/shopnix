@@ -134,7 +134,7 @@ export default function InboxPage() {
     return true;
   });
 
-  if (isConvLoading) return <LoadingState title="Loading omnichannel conversations..." />;
+  if (isConvLoading) return <LoadingState rows={4} />;
 
   return (
     <div className="space-y-4">

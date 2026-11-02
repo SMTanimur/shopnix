@@ -124,3 +124,62 @@ This checklist tracks real-time progress across all phases of the project.
 - [x] Frontend production build (`apps/web` next build — all 15 static/dynamic routes compiled, 0 errors)
 - [x] Monorepo build verified (`turbo build` — 2/2 tasks pass, 0 errors)
 - [x] Multi-stage Dockerfiles (`apps/web/Dockerfile`, `apps/api/Dockerfile`) and `docker-compose.yml`
+
+
+---
+
+## Phase 8 — Multi-Store Ecommerce Integration (`/stores`)
+- [x] Backend: StoreIntegration and StoreSyncLog schemas
+- [x] Backend: Connectors for Shopify, WooCommerce, and Custom API stores
+- [x] Backend: Bidirectional product and order synchronization engine with audit logging
+- [x] Frontend: Store connections directory, credentials setup wizard, and manual sync triggers
+
+---
+
+## Phase 9 — Omnichannel Messaging & Unified Inbox (`/inbox`)
+- [x] Backend: InboxConversation and InboxMessage schemas with multi-channel support
+- [x] Backend: WhatsApp Cloud API gateway & Facebook Messenger gateway
+- [x] Backend: Real-time message streaming, AI Copilot, Approval mode, and Autonomous modes
+- [x] Backend: 1-Click convert chat message to official Cash on Delivery order
+- [x] Frontend: 3-pane Unified Inbox with channel filters, AI draft approval, and quick order drawer
+
+---
+
+## Phase 10 — Centralized AI Provider Management & Model Router
+- [x] Backend: AES-256-GCM encryption service for securing provider API keys at rest
+- [x] Backend: OpenRouter dynamic model discovery checking official pricing metadata (`pricing.prompt === "0"` & `pricing.completion === "0"`)
+- [x] Backend: Default out-of-the-box Free-Only mode preventing accidental billing
+- [x] Backend: Google Gemini and OpenAI provider adapters
+- [x] Backend: AI Model Router with Manual, Auto, Free-Only, and Failover routing modes
+- [x] Backend: AI token usage and cost tracking in BDT
+- [x] Frontend: Global AI Assistant (`/ai-assistant`) grounded in store operational data
+- [x] Frontend: AI-Powered Product Builder with bilingual Bangla/English copy & SEO generation
+
+---
+
+## Phase 11 — Visual Automation Engine & AI Agent Builder
+- [x] Backend: WorkflowDefinition and WorkflowExecutionLog schemas
+- [x] Backend: Topological graph executor with trigger, action, and AI decision nodes
+- [x] Backend: Autonomous AI Agent runtime with sandboxed business tools
+- [x] Frontend: Visual Workflow Builder canvas (`/automations`) and execution test debugger
+- [x] Frontend: AI Agent Builder (`/ai-agents`) with prompt editor and tool toggles
+
+---
+
+## Phase 12 — Super Admin Control Center (`/admin`)
+- [x] Backend: Isolated Super Admin authentication realm (`AdminJwtAuthGuard` & `admin_users` collection)
+- [x] Backend: Default admin seed (`admin@shopnix.io` / `ShopnixAdmin2026!`)
+- [x] Backend: Multi-tenant organization suspension, reactivation, and plan adjustments
+- [x] Backend: SaaS Subscription plan tier builder (limits for stores, orders, AI tokens)
+- [x] Backend: Global AI Master Key Vault and immutable audit log stream
+- [x] Frontend: Super Admin dashboard layout, KPI metrics, organization controls, and plan manager
+
+---
+
+## Phase 13 — Port Standardization & Production Hardening
+- [x] Backend server standardized to port **8000** (`http://localhost:8000/api/v1` & `/api/docs`)
+- [x] Frontend web application standardized to port **5000** (`http://localhost:5000`)
+- [x] Environment files (`.env.example`, `docker-compose.yml`, `apps/api/src/config/configuration.ts`, `apps/web/src/lib/api.ts`) updated
+- [x] 18/18 Unit tests passing (`bunx vitest run`)
+- [x] TypeScript strict mode: 6/6 workspaces passing with 0 errors (`turbo typecheck`)
+- [x] Full production build: 25 routes compiled and prerendered cleanly (`turbo build`)

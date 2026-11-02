@@ -95,7 +95,7 @@ export default function StoresPage() {
     }
   };
 
-  if (isLoading) return <LoadingState title="Loading connected stores..." />;
+  if (isLoading) return <LoadingState rows={4} />;
   if (isError) return <ErrorState title="Failed to load stores" onRetry={() => refetch()} />;
 
   const activeStores = stores || [];
@@ -107,7 +107,7 @@ export default function StoresPage() {
       <PageHeader
         title="Store Integrations"
         description="Connect external Shopify, WooCommerce, and custom ecommerce channels for unified multi-store fulfillment"
-        action={
+        actions={
           <button
             type="button"
             onClick={() => setIsConnectModalOpen(true)}
@@ -182,7 +182,6 @@ export default function StoresPage() {
                       ? 'processing'
                       : 'archived'
                   }
-                  label={store.connection_status}
                 />
               </div>
 

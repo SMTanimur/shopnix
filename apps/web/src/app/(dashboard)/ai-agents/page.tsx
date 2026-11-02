@@ -103,7 +103,7 @@ export default function AIAgentsPage() {
     );
   };
 
-  if (isLoading) return <LoadingState title="Loading AI agents..." />;
+  if (isLoading) return <LoadingState rows={4} />;
   if (isError) return <ErrorState title="Failed to load agents" onRetry={() => refetch()} />;
 
   const activeAgents = agents || [];
@@ -113,7 +113,7 @@ export default function AIAgentsPage() {
       <PageHeader
         title="Autonomous AI Agents"
         description="Deploy specialized ecommerce agents equipped with controlled business tools to automate sales, support, and logistics"
-        action={
+        actions={
           <button
             type="button"
             onClick={() => {
@@ -149,7 +149,7 @@ export default function AIAgentsPage() {
                   </div>
                 </div>
 
-                <StatusBadge status={agent.is_active ? 'active' : 'archived'} label={agent.is_active ? 'Active' : 'Paused'} />
+                <StatusBadge status={agent.is_active ? 'active' : 'archived'} />
               </div>
 
               <p className="text-xs text-muted-foreground line-clamp-2 mb-4 leading-relaxed">

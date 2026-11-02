@@ -58,7 +58,7 @@ export default function AutomationsPage() {
   const activeWorkflows = workflows || [];
   const currentWorkflow = selectedWorkflow || activeWorkflows[0];
 
-  if (isLoading) return <LoadingState title="Loading visual automations..." />;
+  if (isLoading) return <LoadingState rows={4} />;
   if (isError) return <ErrorState title="Failed to load workflows" onRetry={() => refetch()} />;
 
   return (

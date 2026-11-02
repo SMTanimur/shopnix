@@ -55,3 +55,42 @@ This document records the critical architectural and engineering decisions made 
 - **Decision:** Organize every reusable UI component in a dedicated folder with an `index.tsx` entry point (e.g., `components/shared/page-header/index.tsx`), and re-export via domain barrel files (`components/shared/index.ts`).
 - **Rationale:** Encapsulates sub-components, types, and styles within component folders while providing clean, readable import paths (`import { PageHeader } from '@/components/shared'`).
 - **Consequences:** Strict compliance required for all created UI components.
+
+
+---
+
+## ADR-007: Dual Authentication Realm for Super Admin Control Center
+- **Status:** Accepted
+- **Context:** Platform operators require administrative capabilities over all tenants, subscriptions, and global AI infrastructure, but must not share credentials, JWT tokens, or session lifetimes with standard merchant store accounts.
+- **Decision:** Establish two completely segregated authentication realms:
+  1. **Merchant Realm:** Collection `users`, tokens in `shopnix_tokens`, validated by `JwtAuthGuard`.
+  2. **Super Admin Realm:** Collection `admin_users`, tokens in `shopnix_admin_tokens`, validated by `AdminJwtAuthGuard`.
+- **Rationale:** Prevents privilege escalation vectors. A compromised merchant token cannot access `/admin/*`, and super admins cannot inadvertently alter merchant-scoped state without deliberate, audited proxy mechanisms.
+- **Consequences:** Super admin frontends reside under `/admin/*` and communicate with separate endpoints (`/api/v1/admin/*`).
+
+---
+
+## ADR-008: AI Model Router & Dynamic OpenRouter Free Model Discovery
+- **Status:** Accepted
+- **Context:** Modern generative AI changes models and pricing rapidly. Hardcoded lists of free models quickly become obsolete or could result in surprise charges if pricing changes. Merchants also need access to Google Gemini and OpenAI.
+- **Decision:** Implement a centralized `AIModelRouterService` with dynamic catalog discovery against OpenRouter's official models API (`https://openrouter.ai/api/v1/models`). Require `parseFloat(pricing.prompt) === 0 && parseFloat(pricing.completion) === 0` to classify any model as free. Default all operations to `free_only: true`. Encrypt API keys at rest via AES-256-GCM.
+- **Rationale:** Protects merchants and platform owners against accidental billing while providing real-time access to the latest zero-cost LLMs. Decouples application features from specific vendor SDKs.
+- **Consequences:** All AI completions must flow through the router service and log usage telemetry in `ai_usage_records`.
+
+---
+
+## ADR-009: Omnichannel Unified Inbox with Approval Mode
+- **Status:** Accepted
+- **Context:** In Bangladesh ecommerce, orders and customer support queries originate overwhelmingly from WhatsApp and Facebook Messenger. Automated AI chatbots can hallucinate incorrect stock, pricing, or delivery promises.
+- **Decision:** Implement a Unified Inbox aggregating WhatsApp Cloud API and Facebook Messenger Graph API. Include an AI Copilot with an **Approval Mode** where AI-suggested responses must be explicitly verified and approved by human agents before dispatching to the customer. Include 1-Click order creation from chat text. Provide sandbox fallback adapters for offline development.
+- **Rationale:** Eliminates AI hallucination risk in high-stakes retail transactions while drastically accelerating agent response times.
+- **Consequences:** Messages contain approval status flags and link directly into Shopnix order draft workflows.
+
+---
+
+## ADR-010: Standardized Network Ports (API 8000, Web 5000)
+- **Status:** Accepted
+- **Context:** Standard Next.js (port 3000) and NestJS (port 3000) defaults collide immediately when run locally or in docker configurations.
+- **Decision:** Standardize backend NestJS API server on port **8000** (`http://localhost:8000/api/v1`) and frontend Next.js Web on port **5000** (`http://localhost:5000`).
+- **Rationale:** Eliminates port collision conflicts across local development, Docker containers, and CI/CD pipelines.
+- **Consequences:** All CORS configs, environment templates, test configs, and API clients reference 8000/5000 consistently.
