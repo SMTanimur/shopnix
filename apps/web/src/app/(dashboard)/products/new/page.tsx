@@ -55,6 +55,35 @@ export default function NewProductPage() {
   const [newTag, setNewTag] = useState('');
   const [errorBanner, setErrorBanner] = useState<string | null>(null);
 
+  // AI Generator state
+  const [isAIModalOpen, setIsAIModalOpen] = useState(false);
+  const [aiTopic, setAiTopic] = useState('');
+  const [aiLang, setAiLang] = useState<'bn' | 'en' | 'bilingual'>('bilingual');
+  const [aiTone, setAiTone] = useState<'persuasive' | 'professional' | 'minimalist' | 'exciting'>('persuasive');
+
+  const aiGenMutation = useMutation({
+    mutationFn: async () => {
+      return api.ai.generateProductContent({
+        product_name: aiTopic || form.name || 'Premium Product',
+        language: aiLang,
+        tone: aiTone,
+      });
+    },
+    onSuccess: (res) => {
+      if (res?.data) {
+        setForm((prev) => ({
+          ...prev,
+          name: res.data.title || prev.name,
+          description: res.data.description || prev.description,
+          short_description: res.data.short_description || prev.short_description,
+          seo_title: res.data.seo_title || prev.seo_title,
+          seo_description: res.data.seo_description || prev.seo_description,
+        }));
+        setIsAIModalOpen(false);
+      }
+    },
+  });
+
   // Profit Margin Calculation
   const profitMargin = calculateProfitMargin(
     form.sale_price || form.regular_price,
@@ -176,6 +205,20 @@ export default function NewProductPage() {
             title="General Information"
             description="Core naming, identification, and descriptions."
           >
+            <div className="flex justify-end mb-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setAiTopic(form.name);
+                  setIsAIModalOpen(true);
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/10 text-primary text-xs font-semibold hover:bg-primary/20 transition-colors cursor-pointer"
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                AI Bilingual Copywriter & SEO
+              </button>
+            </div>
+
             <div>
               <label className="block text-xs font-medium text-foreground mb-1.5">
                 Product Title <span className="text-destructive">*</span>
@@ -626,6 +669,92 @@ export default function NewProductPage() {
           </div>
         </div>
       </div>
+
+      {/* AI Copywriter Modal */}
+      {isAIModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in">
+          <div className="w-full max-w-md rounded-xl border border-border bg-card p-6 shadow-2xl animate-in zoom-in-95">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-base font-bold text-foreground flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-primary" />
+                AI Copywriter & SEO Generator
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsAIModalOpen(false)}
+                className="text-muted-foreground hover:text-foreground cursor-pointer"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="space-y-4 text-xs">
+              <div>
+                <label className="block font-medium text-foreground mb-1">Product Keyword / Rough Name</label>
+                <input
+                  type="text"
+                  placeholder="e.g. Silk embroidered Festive Panjabi"
+                  value={aiTopic}
+                  onChange={(e) => setAiTopic(e.target.value)}
+                  className="w-full h-8 px-2.5 rounded-md border border-border bg-background text-foreground"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <label className="block font-medium text-foreground mb-1">Language</label>
+                  <select
+                    value={aiLang}
+                    onChange={(e) => setAiLang(e.target.value as any)}
+                    className="w-full h-8 px-2 rounded-md border border-border bg-background text-foreground"
+                  >
+                    <option value="bilingual">Bilingual (Bangla + English)</option>
+                    <option value="bn">Bangla Only</option>
+                    <option value="en">English Only</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-medium text-foreground mb-1">Copywriting Tone</label>
+                  <select
+                    value={aiTone}
+                    onChange={(e) => setAiTone(e.target.value as any)}
+                    className="w-full h-8 px-2 rounded-md border border-border bg-background text-foreground"
+                  >
+                    <option value="persuasive">High-Converting Persuasive</option>
+                    <option value="professional">Professional & Clean</option>
+                    <option value="exciting">Exciting & Trendy</option>
+                    <option value="minimalist">Minimalist Specs</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="p-3 rounded-lg bg-primary/5 text-muted-foreground text-[11px] leading-relaxed">
+                Automatically drafts an optimized Title, Short Summary, formatted Description, and Search Engine Meta Tags using our free OpenRouter model.
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-border">
+                <button
+                  type="button"
+                  onClick={() => setIsAIModalOpen(false)}
+                  className="px-3 py-1.5 text-muted-foreground hover:text-foreground cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  disabled={aiGenMutation.isPending}
+                  onClick={() => aiGenMutation.mutate()}
+                  className="px-4 py-1.5 rounded-lg bg-primary text-primary-foreground font-semibold hover:opacity-90 cursor-pointer disabled:opacity-50 flex items-center gap-1.5"
+                >
+                  <Sparkles className="h-3 w-3" />
+                  {aiGenMutation.isPending ? 'Generating Copy...' : 'Generate & Apply'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
