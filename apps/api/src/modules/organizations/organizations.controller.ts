@@ -1,0 +1,36 @@
+import { Controller, Get, Patch, Body, UseGuards } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
+import { OrganizationsService } from './organizations.service';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
+import { RolesGuard } from '../../common/guards/roles.guard';
+import { Roles } from '../../common/decorators/roles.decorator';
+import { CurrentUser } from '../../common/decorators/current-user.decorator';
+import { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';
+import { updateOrganizationSchema, type UpdateOrganizationInput } from '@shopnix/schemas';
+import type { AuthenticatedUser } from '@shopnix/types';
+
+@ApiTags('Organizations')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Controller('organizations')
+export class OrganizationsController {
+  constructor(private readonly orgsService: OrganizationsService) {}
+
+  @Get('current')
+  @ApiOperation({ summary: 'Get current organization details' })
+  async getCurrent(@CurrentUser() user: AuthenticatedUser) {
+    const org = await this.orgsService.findById(user.organizationId);
+    return { success: true, data: org };
+  }
+
+  @Patch('current')
+  @Roles('owner', 'admin')
+  @ApiOperation({ summary: 'Update organization store profile & settings' })
+  async updateCurrent(
+    @CurrentUser() user: AuthenticatedUser,
+    @Body(new ZodValidationPipe(updateOrganizationSchema)) input: UpdateOrganizationInput
+  ) {
+    const org = await this.orgsService.update(user.organizationId, input);
+    return { success: true, data: org };
+  }
+}

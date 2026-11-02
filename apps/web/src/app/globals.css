@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Deep Indigo Brand Palette */
+  --color-primary: oklch(0.45 0.15 280);
+  --color-primary-foreground: oklch(0.98 0 0);
+
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+
+  --color-secondary: oklch(0.965 0.005 280);
+  --color-secondary-foreground: oklch(0.2 0.02 280);
+
+  --color-muted: oklch(0.965 0 0);
+  --color-muted-foreground: oklch(0.45 0 0);
+
+  --color-accent: oklch(0.95 0.03 280);
+  --color-accent-foreground: oklch(0.25 0.08 280);
+
+  /* Semantic Alerts */
+  --color-success: oklch(0.55 0.15 145);
+  --color-success-foreground: oklch(0.98 0 0);
+
+  --color-warning: oklch(0.7 0.15 75);
+  --color-warning-foreground: oklch(0.18 0.05 75);
+
+  --color-destructive: oklch(0.55 0.2 25);
+  --color-destructive-foreground: oklch(0.98 0 0);
+
+  --color-border: oklch(0.92 0 0);
+  --color-input: oklch(0.92 0 0);
+  --color-ring: oklch(0.45 0.15 280);
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+}
+
+:root {
+  --radius: 0.5rem;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  -webkit-font-smoothing: antialiased;
+}
