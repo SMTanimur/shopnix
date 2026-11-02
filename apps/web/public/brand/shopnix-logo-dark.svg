@@ -1,25 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" fill="none">
   <defs>
-    <linearGradient id="dark-icon-bg" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+    <linearGradient id="logo-icon-bg-dark" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E11D48" />
-      <stop offset="60%" stop-color="#F43F5E" />
+      <stop offset="50%" stop-color="#F43F5E" />
       <stop offset="100%" stop-color="#FB7185" />
     </linearGradient>
-    <linearGradient id="dark-nix-grad" x1="120" y1="18" x2="190" y2="38" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FB7185" />
-      <stop offset="100%" stop-color="#FDA4AF" />
+    <linearGradient id="logo-bolt-grad-dark" x1="20" y1="20" x2="34" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E11D48" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+    <linearGradient id="logo-nix-grad-dark" x1="120" y1="18" x2="190" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E11D48" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+    <linearGradient id="spark-color-dark" x1="32" y1="12" x2="42" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#F59E0B" />
     </linearGradient>
   </defs>
 
-  <rect x="4" y="5" width="44" height="44" rx="13" fill="url(#dark-icon-bg)" />
-  <path d="M20 20V17C20 13.68 22.68 11 26 11C29.32 11 32 13.68 32 17V20" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" fill="none" />
-  <path d="M14 20H38L36.3 39C36.1 41.2 34.2 43 32 43H20C17.8 43 15.9 41.2 15.7 39L14 20Z" fill="#FFFFFF" />
-  <path d="M19 32C19 29 22 26.5 26 26.5C30 26.5 33 29 33 31.5C33 35 27 35.5 22 37.5C20 38.5 19 40 19 41.5H33" stroke="#E11D48" stroke-width="2.4" stroke-linecap="round" />
-  <path d="M37 14C37 17 35 19 32 19C35 19 37 21 37 24C37 21 39 19 42 19C39 19 37 17 37 14Z" fill="#FBBF24" />
+  <!-- 1. ICON MARK -->
+  <g>
+    <rect x="4" y="5" width="44" height="44" rx="13" fill="url(#logo-icon-bg-dark)" />
+    <path d="M4 18C4 10.8 10.8 5 18 5H34C41.2 5 48 10.8 48 18V22L4 32V18Z" fill="#FFFFFF" fill-opacity="0.12" />
+    <path d="M20 18C20 13.5 22.8 10.5 26 10.5C29.2 10.5 32 13.5 32 18" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" />
+    <path d="M14 18.5H38L35.4 39.5C35.1 41.7 33.2 43.5 31 43.5H21C18.8 43.5 16.9 41.7 16.6 39.5L14 18.5Z" fill="#FFFFFF" />
+    <path d="M28 22L19.5 31.5H25L23 39.5L33 29.5H27.5L28 22Z" fill="url(#logo-bolt-grad-dark)" />
+    <path d="M37 9C37 11.5 35 13 32.5 13C35 13 37 14.5 37 17C37 14.5 39 13 41.5 13C39 13 37 11.5 37 9Z" fill="url(#spark-color-dark)" />
+  </g>
 
-  <text x="58" y="35" font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif" font-size="26" font-weight="900" letter-spacing="-0.04em" fill="#FFFFFF">
-    Shop<tspan fill="url(#dark-nix-grad)">nix</tspan>
+  <!-- 2. BRAND WORDMARK (DARK FOR LIGHT BACKGROUNDS) -->
+  <text
+    x="58"
+    y="35"
+    font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif"
+    font-size="26"
+    font-weight="900"
+    letter-spacing="-0.04em"
+    fill="#0F172A"
+  >
+    Shop<tspan fill="url(#logo-nix-grad-dark)">nix</tspan>
   </text>
-  <rect x="162" y="19" width="30" height="16" rx="5" fill="#FB7185" fill-opacity="0.2" />
-  <text x="177" y="30.5" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="9" font-weight="800" letter-spacing="0.08em" fill="#FDA4AF" text-anchor="middle">OS</text>
+
+  <!-- 3. OS BADGE PILL -->
+  <rect x="176" y="20" width="28" height="17" rx="5" fill="#FFE4E6" stroke="#FECDD3" stroke-width="1" />
+  <text
+    x="190"
+    y="32.5"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    font-size="9.5"
+    font-weight="800"
+    letter-spacing="0.05em"
+    fill="#E11D48"
+    text-anchor="middle"
+  >
+    OS
+  </text>
 </svg>

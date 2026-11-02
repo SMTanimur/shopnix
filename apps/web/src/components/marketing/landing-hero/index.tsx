@@ -61,7 +61,7 @@ export function LandingHero() {
       {/* Modular Animated SVG & Glowing Canvas Background */}
       <HeroBackground />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10 text-center">
         {/* Announcement Badge */}
         <motion.div
           initial={{ opacity: 0, y: -12 }}

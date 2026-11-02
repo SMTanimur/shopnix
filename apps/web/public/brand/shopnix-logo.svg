@@ -2,69 +2,63 @@
   <defs>
     <linearGradient id="logo-icon-bg" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E11D48" />
-      <stop offset="60%" stop-color="#F43F5E" />
+      <stop offset="50%" stop-color="#F43F5E" />
       <stop offset="100%" stop-color="#FB7185" />
+    </linearGradient>
+    <linearGradient id="logo-bolt-grad" x1="20" y1="20" x2="34" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E11D48" />
+      <stop offset="100%" stop-color="#F43F5E" />
     </linearGradient>
     <linearGradient id="logo-nix-grad" x1="120" y1="18" x2="190" y2="38" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E11D48" />
       <stop offset="100%" stop-color="#F43F5E" />
     </linearGradient>
     <linearGradient id="spark-color" x1="32" y1="12" x2="42" y2="24" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="0%" stop-color="#FDE047" />
       <stop offset="100%" stop-color="#F59E0B" />
     </linearGradient>
     <filter id="logo-drop-shadow" x="-10%" y="-10%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#E11D48" flood-opacity="0.25" />
+      <feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#E11D48" flood-opacity="0.25" />
     </filter>
   </defs>
 
-  <!-- 1. ICON MARK (Shopping Bag + Phoenix Velocity Arc + Spark) -->
+  <!-- 1. ICON MARK (Shopping Bag + Lightning Bolt + Spark) -->
   <g filter="url(#logo-drop-shadow)">
     <!-- Base Squircle -->
     <rect x="4" y="5" width="44" height="44" rx="13" fill="url(#logo-icon-bg)" />
-    
+
+    <!-- Top Specular Sheen -->
+    <path d="M4 18C4 10.8 10.8 5 18 5H34C41.2 5 48 10.8 48 18V22L4 32V18Z" fill="#FFFFFF" fill-opacity="0.12" />
+
     <!-- Bag Handle -->
     <path
-      d="M20 20V17C20 13.68 22.68 11 26 11C29.32 11 32 13.68 32 17V20"
+      d="M20 18C20 13.5 22.8 10.5 26 10.5C29.2 10.5 32 13.5 32 18"
       stroke="#FFFFFF"
-      stroke-width="2.8"
+      stroke-width="3"
       stroke-linecap="round"
       fill="none"
     />
 
     <!-- Bag Body -->
     <path
-      d="M14 20H38L36.3 39C36.1 41.2 34.2 43 32 43H20C17.8 43 15.9 41.2 15.7 39L14 20Z"
+      d="M14 18.5H38L35.4 39.5C35.1 41.7 33.2 43.5 31 43.5H21C18.8 43.5 16.9 41.7 16.6 39.5L14 18.5Z"
       fill="#FFFFFF"
     />
 
-    <!-- Bag Inner Shadow -->
+    <!-- Speed Bolt in Bag Center -->
     <path
-      d="M14 20L19 25H33L38 20"
-      stroke="#F43F5E"
-      stroke-width="1.8"
-      stroke-linejoin="round"
-      stroke-opacity="0.3"
-    />
-
-    <!-- Velocity 'S' Flame -->
-    <path
-      d="M19 32C19 29 22 26.5 26 26.5C30 26.5 33 29 33 31.5C33 35 27 35.5 22 37.5C20 38.5 19 40 19 41.5H33"
-      stroke="#E11D48"
-      stroke-width="2.4"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      d="M28 22L19.5 31.5H25L23 39.5L33 29.5H27.5L28 22Z"
+      fill="url(#logo-bolt-grad)"
     />
 
     <!-- Innovation Spark -->
     <path
-      d="M37 14C37 17 35 19 32 19C35 19 37 21 37 24C37 21 39 19 42 19C39 19 37 17 37 14Z"
+      d="M37 9C37 11.5 35 13 32.5 13C35 13 37 14.5 37 17C37 14.5 39 13 41.5 13C39 13 37 11.5 37 9Z"
       fill="url(#spark-color)"
     />
   </g>
 
   <!-- 2. BRAND WORDMARK -->
-  <!-- "Shop" in Slate-900 -->
   <text
     x="58"
     y="35"
@@ -77,15 +71,15 @@
     Shop<tspan fill="url(#logo-nix-grad)">nix</tspan>
   </text>
 
-  <!-- Subtle Badge Pill Beside Wordmark -->
-  <rect x="162" y="19" width="30" height="16" rx="5" fill="#E11D48" fill-opacity="0.1" />
+  <!-- 3. OS BADGE PILL -->
+  <rect x="176" y="20" width="28" height="17" rx="5" fill="#FFE4E6" stroke="#FECDD3" stroke-width="1" />
   <text
-    x="177"
-    y="30.5"
-    font-family="-apple-system, BlinkMacSystemFont, sans-serif"
-    font-size="9"
+    x="190"
+    y="32.5"
+    font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    font-size="9.5"
     font-weight="800"
-    letter-spacing="0.08em"
+    letter-spacing="0.05em"
     fill="#E11D48"
     text-anchor="middle"
   >

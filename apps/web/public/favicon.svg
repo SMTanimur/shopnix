@@ -1,13 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="fav-bg" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+    <linearGradient id="shopnix-fav-bg" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E11D48" />
+      <stop offset="60%" stop-color="#F43F5E" />
+      <stop offset="100%" stop-color="#FB7185" />
+    </linearGradient>
+    <linearGradient id="fav-bolt-grad" x1="24" y1="25" x2="40" y2="48" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E11D48" />
       <stop offset="100%" stop-color="#F43F5E" />
     </linearGradient>
+    <linearGradient id="fav-gold" x1="40" y1="9" x2="52" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
   </defs>
-  <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#fav-bg)" />
-  <path d="M12 11V9C12 7.34 13.34 6 15 6C16.66 6 18 7.34 18 9V11" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" fill="none" />
-  <path d="M8 11H22L20.8 25C20.6 26.2 19.4 27 18.2 27H11.8C10.6 27 9.4 26.2 9.2 25L8 11Z" fill="#FFFFFF" />
-  <path d="M11 18C11 16 13 14.5 15 14.5C17 14.5 19 16 19 18C19 20 15 20.5 13 22H19" stroke="#E11D48" stroke-width="1.6" stroke-linecap="round" />
-  <circle cx="23" cy="9" r="1.8" fill="#FBBF24" />
+
+  <!-- Squircle Base -->
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#shopnix-fav-bg)" />
+
+  <!-- Shopping Bag Handle -->
+  <path
+    d="M24 20C24 14.5 27.6 10.5 32 10.5C36.4 10.5 40 14.5 40 20"
+    stroke="#FFFFFF"
+    stroke-width="3.8"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Shopping Bag Body -->
+  <path
+    d="M16.5 21H47.5L44.2 46.8C43.8 49.6 41.5 51.5 38.6 51.5H25.4C22.5 51.5, 20.2 49.6, 19.8 46.8L16.5 21Z"
+    fill="#FFFFFF"
+  />
+
+  <!-- High-Velocity Speed Bolt -->
+  <path
+    d="M34 25.5L23.5 37.5H30.5L28 47.5L40.5 35.5H33.5L34 25.5Z"
+    fill="url(#fav-bolt-grad)"
+  />
+
+  <!-- Innovation Spark -->
+  <path
+    d="M46 9.5C46 12.5 43.5 14.5 40.5 14.5C43.5 14.5 46 16.5 46 19.5C46 16.5 48.5 14.5 51.5 14.5C48.5 14.5 46 12.5 46 9.5Z"
+    fill="url(#fav-gold)"
+  />
 </svg>

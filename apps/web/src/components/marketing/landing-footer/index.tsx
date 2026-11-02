@@ -8,7 +8,7 @@ import { ShopnixLogo } from '../../brand';
 export function LandingFooter() {
   return (
     <footer className="border-t border-border/80 bg-background pt-16 pb-12 text-xs text-muted-foreground">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Info */}
           <div className="col-span-2 space-y-4">

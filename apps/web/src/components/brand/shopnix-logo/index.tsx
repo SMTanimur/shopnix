@@ -5,6 +5,7 @@ interface ShopnixLogoProps {
   size?: number;
   className?: string;
   theme?: 'light' | 'dark' | 'auto';
+  showBadge?: boolean;
 }
 
 export function ShopnixIcon({ size = 36, className = '' }: { size?: number; className?: string }) {
@@ -18,60 +19,62 @@ export function ShopnixIcon({ size = 36, className = '' }: { size?: number; clas
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="shopnix-icon-react-bg" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+        <linearGradient id="shopnix-react-icon-bg" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#E11D48" />
-          <stop offset="60%" stopColor="#F43F5E" />
+          <stop offset="50%" stopColor="#F43F5E" />
           <stop offset="100%" stopColor="#FB7185" />
         </linearGradient>
-        <linearGradient id="spark-grad-react" x1="32" y1="20" x2="44" y2="36" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#FBBF24" />
+        <linearGradient id="shopnix-react-bolt-grad" x1="24" y1="25" x2="40" y2="48" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#E11D48" />
+          <stop offset="100%" stopColor="#F43F5E" />
+        </linearGradient>
+        <linearGradient id="shopnix-react-spark-gold" x1="40" y1="9" x2="52" y2="20" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#FDE047" />
           <stop offset="100%" stopColor="#F59E0B" />
         </linearGradient>
       </defs>
 
       {/* Squircle Base with Crimson-Rose Gradient */}
-      <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#shopnix-icon-react-bg)" />
+      <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#shopnix-react-icon-bg)" />
 
-      {/* Subtle Top Specular Sheen */}
+      {/* Top Specular Sheen */}
       <path d="M4 20C4 11.16 11.16 4 20 4H44C52.84 4 60 11.16 60 20V26L4 38V20Z" fill="#FFFFFF" fillOpacity="0.12" />
 
-      {/* Bag Handle */}
+      {/* Shopping Bag Handle */}
       <path
-        d="M24 23V19C24 14.58 27.58 11 32 11C36.42 11 40 14.58 40 19V23"
+        d="M24 20C24 14.5 27.6 10.5 32 10.5C36.4 10.5 40 14.5 40 20"
         stroke="#FFFFFF"
-        strokeWidth="3.5"
+        strokeWidth="3.8"
         strokeLinecap="round"
         fill="none"
       />
 
-      {/* Shopping Bag Silhouette */}
+      {/* Shopping Bag Body */}
       <path
-        d="M17 23H47L44.8 45.2C44.5 48.2 42 50.5 39 50.5H25C22 50.5 19.5 48.2 19.2 45.2L17 23Z"
+        d="M16.5 21H47.5L44.2 46.8C43.8 49.6 41.5 51.5 38.6 51.5H25.4C22.5 51.5, 20.2 49.6, 19.8 46.8L16.5 21Z"
         fill="#FFFFFF"
       />
 
-      {/* Bag Inner Shading */}
+      {/* Subtle Inner Crease */}
       <path
-        d="M17 23L24 29H40L47 23"
+        d="M16.5 21L23 27H41L47.5 21"
         stroke="#F43F5E"
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeOpacity="0.3"
-      />
-
-      {/* Dynamic 'S' Velocity Swoosh */}
-      <path
-        d="M23 37C23 33 27 30 32 30C37 30 40 33 40 36C40 40 33 41 27 43C24 44 23 46 23 48H41"
-        stroke="#E11D48"
-        strokeWidth="3"
+        strokeWidth="1.5"
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeOpacity="0.25"
       />
 
-      {/* Innovation Spark */}
+      {/* High-Velocity Speed Bolt (Center of Bag) */}
       <path
-        d="M44 18C44 21.5 41.5 24 38 24C41.5 24 44 26.5 44 30C44 26.5 46.5 24 50 24C46.5 24 44 21.5 44 18Z"
-        fill="url(#spark-grad-react)"
+        d="M34 25.5L23.5 37.5H30.5L28 47.5L40.5 35.5H33.5L34 25.5Z"
+        fill="url(#shopnix-react-bolt-grad)"
+      />
+
+      {/* Innovation Spark / Star */}
+      <path
+        d="M46 9.5C46 12.5 43.5 14.5 40.5 14.5C43.5 14.5 46 16.5 46 19.5C46 16.5 48.5 14.5 51.5 14.5C48.5 14.5 46 12.5 46 9.5Z"
+        fill="url(#shopnix-react-spark-gold)"
       />
     </svg>
   );
@@ -82,6 +85,7 @@ export function ShopnixLogo({
   size = 38,
   className = '',
   theme = 'auto',
+  showBadge = true,
 }: ShopnixLogoProps) {
   if (variant === 'icon') {
     return <ShopnixIcon size={size} className={className} />;
@@ -91,21 +95,23 @@ export function ShopnixLogo({
     theme === 'dark' ? 'text-white' : theme === 'light' ? 'text-slate-900' : 'text-slate-900 dark:text-white';
 
   return (
-    <div className={`flex items-center gap-3 select-none ${className}`}>
+    <div className={`flex items-center gap-2.5 sm:gap-3 select-none ${className}`}>
       <ShopnixIcon
         size={size}
         className="shrink-0 transition-transform duration-200 group-hover:scale-105 shadow-md shadow-rose-500/20"
       />
-      <div className="flex items-center gap-1.5 leading-none">
+      <div className="flex items-center gap-2 leading-none">
         <span
-          className={`font-black tracking-tight text-xl transition-colors ${textColor}`}
-          style={{ letterSpacing: '-0.04em' }}
+          className={`font-black tracking-tight text-xl sm:text-[22px] transition-colors ${textColor}`}
+          style={{ letterSpacing: '-0.035em' }}
         >
-          Shop<span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-rose-500">nix</span>
+          Shop<span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-600 via-rose-500 to-pink-500">nix</span>
         </span>
-        <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20 tracking-wider uppercase ml-0.5">
-          OS
-        </span>
+        {showBadge && (
+          <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400 border border-rose-200/80 dark:border-rose-800/60 tracking-wider uppercase ml-0.5">
+            OS
+          </span>
+        )}
       </div>
     </div>
   );
