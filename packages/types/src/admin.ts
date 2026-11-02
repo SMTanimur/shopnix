@@ -77,7 +77,7 @@ export interface AdminAuditLog {
   target_type: 'organization' | 'user' | 'subscription' | 'ai_config' | 'system';
   target_id: string;
   details?: Record<string, any>;
-  ip_address?: string;
+  ip_address?: string | null;
   created_at: string;
 }
 

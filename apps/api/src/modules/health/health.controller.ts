@@ -10,6 +10,7 @@ export class HealthController {
     return {
       status: 'ok',
       service: 'shopnix-api',
+      hot_reload: 'live_realtime_verified',
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
     };
