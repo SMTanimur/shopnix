@@ -71,10 +71,18 @@ export default function RegisterPage() {
         password,
       });
 
-      // Successful registration: store tokens and redirect to dashboard
-      setStoredTokens(res.tokens);
-      setAuth(res.user, res.organization);
-      router.push('/dashboard');
+      // Defensive unwrapping to support both direct and { success, data } responses
+      const payload: any = (res as any)?.data || res;
+
+      if (payload?.tokens?.access_token) {
+        // Store in localStorage + 7-Day cookies
+        setStoredTokens(payload.tokens);
+        setAuth(payload.user, payload.organization);
+        router.push('/dashboard');
+      } else {
+        setErrorMessage('Registration succeeded but session could not be established. Please sign in.');
+        router.push('/login');
+      }
     } catch (err: any) {
       // Capture specific backend error message
       const backendMessage =

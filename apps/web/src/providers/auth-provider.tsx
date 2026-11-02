@@ -16,11 +16,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     api.auth
       .getMe()
-      .then((res) => {
-        setAuth(res.user, res.organization);
+      .then((res: any) => {
+        const payload = res?.data || res;
+        if (payload?.user && payload?.organization) {
+          setAuth(payload.user, payload.organization);
+        }
       })
-      .catch(() => {
-        logout();
+      .catch((err: any) => {
+        // Only trigger logout if server explicitly rejects with 401 Unauthorized
+        if (err?.response?.status === 401) {
+          logout();
+        }
       })
       .finally(() => {
         setLoading(false);

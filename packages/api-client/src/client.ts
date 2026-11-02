@@ -62,12 +62,12 @@ export class ShopnixApiClient {
               throw new Error('No refresh token available');
             }
 
-            const refreshResponse = await axios.post<AuthTokens>(
+            const refreshResponse = await axios.post<any>(
               `${this.config.baseURL}/auth/refresh`,
               { refresh_token: currentTokens.refresh_token }
             );
 
-            const newTokens = refreshResponse.data;
+            const newTokens: AuthTokens = refreshResponse.data?.data || refreshResponse.data;
             this.config.setTokens?.(newTokens);
 
             this.onRefreshed(newTokens.access_token);

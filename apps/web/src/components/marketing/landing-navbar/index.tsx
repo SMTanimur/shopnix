@@ -2,13 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Menu, X, ShieldCheck, ChevronRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Menu, X, ShieldCheck, ChevronRight, Sparkles, LayoutDashboard } from 'lucide-react';
 import { ShopnixLogo } from '../../brand';
+import { useAuthStore } from '../../../stores/auth.store';
 
 export function LandingNavbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('inside-app');
+  const { isAuthenticated, user } = useAuthStore();
 
   // Main high-impact sections for uncluttered, premium desktop header
   const mainNavLinks = [
@@ -114,22 +116,35 @@ export function LandingNavbar() {
 
           <div className="hidden xl:block h-4 w-px bg-slate-200 dark:bg-slate-800" />
 
-          {/* Sign In Link */}
-          <Link
-            href="/login"
-            className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white px-3.5 py-2 rounded-xl hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-colors whitespace-nowrap"
-          >
-            Sign In
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              href="/dashboard"
+              className="inline-flex items-center gap-2 h-11 px-5.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white shadow-md shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all group whitespace-nowrap"
+            >
+              <LayoutDashboard className="h-4 w-4" />
+              <span>Go to Dashboard</span>
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          ) : (
+            <>
+              {/* Sign In Link */}
+              <Link
+                href="/login"
+                className="text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white px-3.5 py-2 rounded-xl hover:bg-slate-100/80 dark:hover:bg-slate-800/80 transition-colors whitespace-nowrap"
+              >
+                Sign In
+              </Link>
 
-          {/* High-Velocity Crimson CTA Button */}
-          <Link
-            href="/register"
-            className="inline-flex items-center gap-2 h-11 px-5.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white shadow-md shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all group whitespace-nowrap"
-          >
-            <span>Get Started Free</span>
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
+              {/* High-Velocity Crimson CTA Button */}
+              <Link
+                href="/register"
+                className="inline-flex items-center gap-2 h-11 px-5.5 text-sm font-semibold rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 hover:from-rose-700 hover:to-pink-700 text-white shadow-md shadow-rose-500/25 hover:shadow-rose-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all group whitespace-nowrap"
+              >
+                <span>Get Started Free</span>
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </>
+          )}
         </div>
 
         {/* Mobile Hamburger Menu Button */}
@@ -195,21 +210,35 @@ export function LandingNavbar() {
 
             {/* Bottom Actions Cluster */}
             <div className="pt-6 border-t border-slate-200 dark:border-slate-800 space-y-3">
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full h-11 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              >
-                Sign In to Account
-              </Link>
-              <Link
-                href="/register"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 text-white text-sm font-semibold shadow-md shadow-rose-500/25 hover:opacity-95 transition-all"
-              >
-                <span>Start 14-Day Free Trial</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              {isAuthenticated ? (
+                <Link
+                  href="/dashboard"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 text-white text-sm font-semibold shadow-md shadow-rose-500/25 hover:opacity-95 transition-all"
+                >
+                  <LayoutDashboard className="h-4 w-4" />
+                  <span>Go to Operations Dashboard</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    href="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full h-11 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                  >
+                    Sign In to Account
+                  </Link>
+                  <Link
+                    href="/register"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-rose-600 via-rose-500 to-pink-600 text-white text-sm font-semibold shadow-md shadow-rose-500/25 hover:opacity-95 transition-all"
+                  >
+                    <span>Start 14-Day Free Trial</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@ import {
   BarChart,
   Bar,
 } from 'recharts';
-import { api } from '../../lib/api';
+import { api } from '../../../lib/api';
 import {
   PageHeader,
   StatCard,
@@ -33,7 +33,7 @@ import {
   StatusBadge,
   ErrorState,
   DateRangePicker,
-} from '../../components';
+} from '../../../components';
 import { formatCurrency, formatDate } from '@shopnix/utils';
 
 export default function DashboardPage() {
