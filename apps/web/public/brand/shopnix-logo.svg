@@ -1,31 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" fill="none">
   <defs>
-    <linearGradient id="shopnix-logo-grad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+    <linearGradient id="logo-icon-bg" x1="4" y1="4" x2="48" y2="48" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E11D48" />
-      <stop offset="50%" stop-color="#F43F5E" />
+      <stop offset="60%" stop-color="#F43F5E" />
       <stop offset="100%" stop-color="#FB7185" />
     </linearGradient>
-    <filter id="logo-shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#E11D48" flood-opacity="0.25" />
+    <linearGradient id="logo-nix-grad" x1="120" y1="18" x2="190" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E11D48" />
+      <stop offset="100%" stop-color="#F43F5E" />
+    </linearGradient>
+    <linearGradient id="spark-color" x1="32" y1="12" x2="42" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <filter id="logo-drop-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#E11D48" flood-opacity="0.25" />
     </filter>
   </defs>
 
-  <!-- Icon Mark -->
-  <g filter="url(#logo-shadow)">
-    <rect x="4" y="6" width="36" height="36" rx="10" fill="url(#shopnix-logo-grad)" />
-    <circle cx="15" cy="18" r="2.5" fill="#FFFFFF" />
-    <circle cx="29" cy="30" r="2.5" fill="#FFFFFF" />
-    <path d="M15 18L29 30" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.5 3.5" stroke-opacity="0.6" />
-    <path d="M22 14C22 18.5 18.5 22 14 22C18.5 22 22 25.5 22 30C22 25.5 25.5 22 30 22C25.5 22 22 18.5 22 14Z" fill="#FFFFFF" />
+  <!-- 1. ICON MARK (Shopping Bag + Phoenix Velocity Arc + Spark) -->
+  <g filter="url(#logo-drop-shadow)">
+    <!-- Base Squircle -->
+    <rect x="4" y="5" width="44" height="44" rx="13" fill="url(#logo-icon-bg)" />
+    
+    <!-- Bag Handle -->
+    <path
+      d="M20 20V17C20 13.68 22.68 11 26 11C29.32 11 32 13.68 32 17V20"
+      stroke="#FFFFFF"
+      stroke-width="2.8"
+      stroke-linecap="round"
+      fill="none"
+    />
+
+    <!-- Bag Body -->
+    <path
+      d="M14 20H38L36.3 39C36.1 41.2 34.2 43 32 43H20C17.8 43 15.9 41.2 15.7 39L14 20Z"
+      fill="#FFFFFF"
+    />
+
+    <!-- Bag Inner Shadow -->
+    <path
+      d="M14 20L19 25H33L38 20"
+      stroke="#F43F5E"
+      stroke-width="1.8"
+      stroke-linejoin="round"
+      stroke-opacity="0.3"
+    />
+
+    <!-- Velocity 'S' Flame -->
+    <path
+      d="M19 32C19 29 22 26.5 26 26.5C30 26.5 33 29 33 31.5C33 35 27 35.5 22 37.5C20 38.5 19 40 19 41.5H33"
+      stroke="#E11D48"
+      stroke-width="2.4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- Innovation Spark -->
+    <path
+      d="M37 14C37 17 35 19 32 19C35 19 37 21 37 24C37 21 39 19 42 19C39 19 37 17 37 14Z"
+      fill="url(#spark-color)"
+    />
   </g>
 
-  <!-- Shopnix Wordmark -->
-  <text x="50" y="27" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Plus Jakarta Sans', sans-serif" font-size="21" font-weight="800" letter-spacing="-0.03em" fill="#0F172A">
-    Shopnix
+  <!-- 2. BRAND WORDMARK -->
+  <!-- "Shop" in Slate-900 -->
+  <text
+    x="58"
+    y="35"
+    font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif"
+    font-size="26"
+    font-weight="900"
+    letter-spacing="-0.04em"
+    fill="#0F172A"
+  >
+    Shop<tspan fill="url(#logo-nix-grad)">nix</tspan>
   </text>
-  
-  <!-- Sub-label Badge -->
-  <text x="51" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" font-weight="700" letter-spacing="0.12em" fill="#E11D48">
-    ECOMMERCE OS
+
+  <!-- Subtle Badge Pill Beside Wordmark -->
+  <rect x="162" y="19" width="30" height="16" rx="5" fill="#E11D48" fill-opacity="0.1" />
+  <text
+    x="177"
+    y="30.5"
+    font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+    font-size="9"
+    font-weight="800"
+    letter-spacing="0.08em"
+    fill="#E11D48"
+    text-anchor="middle"
+  >
+    OS
   </text>
 </svg>

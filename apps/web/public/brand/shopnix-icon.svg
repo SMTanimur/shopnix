@@ -1,29 +1,67 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <defs>
-    <linearGradient id="shopnix-grad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+    <!-- Primary Brand Radial & Linear Gradients -->
+    <linearGradient id="shopnix-bg" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#E11D48" />
-      <stop offset="50%" stop-color="#F43F5E" />
+      <stop offset="60%" stop-color="#F43F5E" />
       <stop offset="100%" stop-color="#FB7185" />
     </linearGradient>
-    <filter id="shopnix-glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#E11D48" flood-opacity="0.3" />
+    <linearGradient id="shopnix-wing" x1="16" y1="16" x2="48" y2="48" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#FFE4E6" />
+    </linearGradient>
+    <linearGradient id="accent-spark" x1="32" y1="20" x2="44" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <filter id="soft-shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#E11D48" flood-opacity="0.35" />
     </filter>
   </defs>
-  <!-- Base Geometric Hexagon with Soft Radii -->
-  <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#shopnix-grad)" filter="url(#shopnix-glow)" />
-  
-  <!-- Subtle Internal Facet Accent -->
-  <path d="M4 16C4 9.37 9.37 4 16 4H32C38.63 4 44 9.37 44 16V22L4 32V16Z" fill="#FFFFFF" fill-opacity="0.08" />
-  
-  <!-- Interconnected Commerce Network & Dynamic Spark Node -->
-  <!-- Top Left Node -->
-  <circle cx="16" cy="18" r="3" fill="#FFFFFF" />
-  <!-- Bottom Right Node -->
-  <circle cx="32" cy="30" r="3" fill="#FFFFFF" />
-  
-  <!-- Connecting Angled Track -->
-  <path d="M16 18L32 30" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="0.5 4" stroke-opacity="0.6" />
-  
-  <!-- Center Dynamic 4-Point Energy Spark -->
-  <path d="M24 13C24 18 20 22 15 22C20 22 24 26 24 31C24 26 28 22 33 22C28 22 24 18 24 13Z" fill="#FFFFFF" />
+
+  <!-- Squircle Base with Luxury Crimson-Rose Gradient -->
+  <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#shopnix-bg)" filter="url(#soft-shadow)" />
+
+  <!-- Subtle Top Lighting Specular Highlight -->
+  <path d="M4 20C4 11.16 11.16 4 20 4H44C52.84 4 60 11.16 60 20V26L4 38V20Z" fill="#FFFFFF" fill-opacity="0.12" />
+
+  <!-- Shopping Bag Silhouette (Ecommerce Core) -->
+  <!-- Bag Handle -->
+  <path
+    d="M24 23V19C24 14.58 27.58 11 32 11C36.42 11 40 14.58 40 19V23"
+    stroke="#FFFFFF"
+    stroke-width="3.5"
+    stroke-linecap="round"
+    fill="none"
+  />
+
+  <!-- Bag Body (Precision Chamfered & Rounded Base) -->
+  <path
+    d="M17 23H47L44.8 45.2C44.5 48.2 42 50.5 39 50.5H25C22 50.5 19.5 48.2 19.2 45.2L17 23Z"
+    fill="url(#shopnix-wing)"
+  />
+
+  <!-- Isometric Inner Crease / Flap -->
+  <path
+    d="M17 23L24 29H40L47 23"
+    stroke="#F43F5E"
+    stroke-width="2"
+    stroke-linejoin="round"
+    stroke-opacity="0.3"
+  />
+
+  <!-- Velocity Phoenix Flame / Dynamic 'S' Swoosh across the Bag -->
+  <path
+    d="M23 37C23 33 27 30 32 30C37 30 40 33 40 36C40 40 33 41 27 43C24 44 23 46 23 48H41"
+    stroke="#E11D48"
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- 4-Point Innovation Spark (High Tech / AI Touch) -->
+  <path
+    d="M44 18C44 21.5 41.5 24 38 24C41.5 24 44 26.5 44 30C44 26.5 46.5 24 50 24C46.5 24 44 21.5 44 18Z"
+    fill="url(#accent-spark)"
+  />
 </svg>

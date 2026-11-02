@@ -7,37 +7,71 @@ interface ShopnixLogoProps {
   theme?: 'light' | 'dark' | 'auto';
 }
 
-export function ShopnixIcon({ size = 32, className = '' }: { size?: number; className?: string }) {
+export function ShopnixIcon({ size = 36, className = '' }: { size?: number; className?: string }) {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 48 48"
+      viewBox="0 0 64 64"
       fill="none"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id="shopnix-react-grad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+        <linearGradient id="shopnix-icon-react-bg" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
           <stop offset="0%" stopColor="#E11D48" />
-          <stop offset="50%" stopColor="#F43F5E" />
+          <stop offset="60%" stopColor="#F43F5E" />
           <stop offset="100%" stopColor="#FB7185" />
         </linearGradient>
+        <linearGradient id="spark-grad-react" x1="32" y1="20" x2="44" y2="36" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#FBBF24" />
+          <stop offset="100%" stopColor="#F59E0B" />
+        </linearGradient>
       </defs>
-      <rect x="4" y="4" width="40" height="40" rx="12" fill="url(#shopnix-react-grad)" />
-      <circle cx="16" cy="18" r="3" fill="#FFFFFF" />
-      <circle cx="32" cy="30" r="3" fill="#FFFFFF" />
+
+      {/* Squircle Base with Crimson-Rose Gradient */}
+      <rect x="4" y="4" width="56" height="56" rx="16" fill="url(#shopnix-icon-react-bg)" />
+
+      {/* Subtle Top Specular Sheen */}
+      <path d="M4 20C4 11.16 11.16 4 20 4H44C52.84 4 60 11.16 60 20V26L4 38V20Z" fill="#FFFFFF" fillOpacity="0.12" />
+
+      {/* Bag Handle */}
       <path
-        d="M16 18L32 30"
+        d="M24 23V19C24 14.58 27.58 11 32 11C36.42 11 40 14.58 40 19V23"
         stroke="#FFFFFF"
-        strokeWidth="2.5"
+        strokeWidth="3.5"
         strokeLinecap="round"
-        strokeDasharray="0.5 4"
-        strokeOpacity="0.7"
+        fill="none"
       />
+
+      {/* Shopping Bag Silhouette */}
       <path
-        d="M24 13C24 18 20 22 15 22C20 22 24 26 24 31C24 26 28 22 33 22C28 22 24 18 24 13Z"
+        d="M17 23H47L44.8 45.2C44.5 48.2 42 50.5 39 50.5H25C22 50.5 19.5 48.2 19.2 45.2L17 23Z"
         fill="#FFFFFF"
+      />
+
+      {/* Bag Inner Shading */}
+      <path
+        d="M17 23L24 29H40L47 23"
+        stroke="#F43F5E"
+        strokeWidth="2"
+        strokeLinejoin="round"
+        strokeOpacity="0.3"
+      />
+
+      {/* Dynamic 'S' Velocity Swoosh */}
+      <path
+        d="M23 37C23 33 27 30 32 30C37 30 40 33 40 36C40 40 33 41 27 43C24 44 23 46 23 48H41"
+        stroke="#E11D48"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+
+      {/* Innovation Spark */}
+      <path
+        d="M44 18C44 21.5 41.5 24 38 24C41.5 24 44 26.5 44 30C44 26.5 46.5 24 50 24C46.5 24 44 21.5 44 18Z"
+        fill="url(#spark-grad-react)"
       />
     </svg>
   );
@@ -45,7 +79,7 @@ export function ShopnixIcon({ size = 32, className = '' }: { size?: number; clas
 
 export function ShopnixLogo({
   variant = 'full',
-  size = 36,
+  size = 38,
   className = '',
   theme = 'auto',
 }: ShopnixLogoProps) {
@@ -53,32 +87,24 @@ export function ShopnixLogo({
     return <ShopnixIcon size={size} className={className} />;
   }
 
-  const textColorClass =
-    theme === 'dark'
-      ? 'text-white'
-      : theme === 'light'
-      ? 'text-slate-900'
-      : 'text-foreground';
-
-  const subColorClass =
-    theme === 'dark'
-      ? 'text-rose-400'
-      : 'text-primary';
+  const textColor =
+    theme === 'dark' ? 'text-white' : theme === 'light' ? 'text-slate-900' : 'text-slate-900 dark:text-white';
 
   return (
-    <div className={`flex items-center gap-2.5 select-none ${className}`}>
-      <ShopnixIcon size={size} className="shrink-0 transition-transform duration-200 group-hover:scale-105 shadow-sm shadow-primary/20" />
-      <div className="flex flex-col leading-none">
+    <div className={`flex items-center gap-3 select-none ${className}`}>
+      <ShopnixIcon
+        size={size}
+        className="shrink-0 transition-transform duration-200 group-hover:scale-105 shadow-md shadow-rose-500/20"
+      />
+      <div className="flex items-center gap-1.5 leading-none">
         <span
-          className={`font-extrabold tracking-tight text-lg transition-colors ${textColorClass}`}
-          style={{ letterSpacing: '-0.03em' }}
+          className={`font-black tracking-tight text-xl transition-colors ${textColor}`}
+          style={{ letterSpacing: '-0.04em' }}
         >
-          Shopnix
+          Shop<span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-rose-500">nix</span>
         </span>
-        <span
-          className={`text-[9px] font-bold tracking-widest uppercase mt-0.5 ${subColorClass}`}
-        >
-          Ecommerce OS
+        <span className="text-[10px] font-extrabold px-1.5 py-0.5 rounded-md bg-primary/10 text-primary border border-primary/20 tracking-wider uppercase ml-0.5">
+          OS
         </span>
       </div>
     </div>

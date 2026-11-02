@@ -115,40 +115,32 @@ export class AuthService {
       is_active: true,
     });
 
-    // Check if MongoDB environment supports multi-document transactions (requires replica set)
-    let session = null;
-    let isTransactionActive = false;
+    // Detect if MongoDB is running as a Replica Set or standalone instance
+    const topologyType = (this.connection as any)?.client?.topology?.description?.type;
+    const isReplicaSet =
+      topologyType === 'ReplicaSetWithPrimary' || topologyType === 'Sharded';
 
-    try {
-      session = await this.connection.startSession();
-      session.startTransaction();
-      isTransactionActive = true;
-    } catch (sessionErr) {
-      // Standalone MongoDB does not support transactions; fallback gracefully
-      this.logger.debug(
-        `MongoDB transactions not supported on this instance (${(sessionErr as Error).message}). Using resilient sequential writes.`
-      );
-      if (session) {
-        session.endSession();
-        session = null;
-      }
-      isTransactionActive = false;
-    }
-
-    if (isTransactionActive && session) {
+    if (isReplicaSet) {
+      let session = null;
       try {
+        session = await this.connection.startSession();
+        session.startTransaction();
         await createdOrg.save({ session });
         await createdUser.save({ session });
         await session.commitTransaction();
       } catch (error) {
-        await session.abortTransaction();
+        if (session) {
+          try {
+            await session.abortTransaction();
+          } catch {}
+        }
         this.logger.error(`Registration transaction failed: ${(error as Error).message}`);
         throw new BadRequestException((error as Error).message || 'Registration failed');
       } finally {
-        session.endSession();
+        if (session) session.endSession();
       }
     } else {
-      // Resilient sequential save with compensating rollback
+      // Standalone MongoDB (local dev / standard Docker): Resilient sequential save with compensating rollback
       try {
         await createdOrg.save();
         try {
@@ -160,7 +152,9 @@ export class AuthService {
         }
       } catch (saveError) {
         this.logger.error(`Registration save failed: ${(saveError as Error).message}`);
-        throw new BadRequestException((saveError as Error).message || 'Failed to complete registration');
+        throw new BadRequestException(
+          (saveError as Error).message || 'Failed to complete registration'
+        );
       }
     }
 
