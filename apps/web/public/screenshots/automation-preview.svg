@@ -1,0 +1,71 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="16" fill="#0A0B0E"/>
+  <rect x="0.5" y="0.5" width="1199" height="719" rx="15.5" stroke="#F43F5E" stroke-opacity="0.25"/>
+  
+  <!-- Window Header -->
+  <rect width="1200" height="48" rx="16" fill="#121318"/>
+  <circle cx="28" cy="24" r="6" fill="#EF4444"/>
+  <circle cx="48" cy="24" r="6" fill="#F59E0B"/>
+  <circle cx="68" cy="24" r="6" fill="#10B981"/>
+  <rect x="420" y="12" width="360" height="24" rx="6" fill="#1E2028"/>
+  <text x="600" y="28" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">app.shopnix.io/automations • Visual Pipeline Builder &amp; AI Decision Graph</text>
+
+  <!-- Canvas Grid Background -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#181A24" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="48" y="72" width="1104" height="614" rx="12" fill="url(#grid)" stroke="#22242F"/>
+
+  <!-- Pipeline Controls Header -->
+  <rect x="68" y="92" width="1064" height="54" rx="8" fill="#12141C" stroke="#22242F"/>
+  <text x="92" y="124" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold">Workflow: "Abandoned Cart &amp; High-Risk RTO Protection"</text>
+  <rect x="910" y="103" width="100" height="32" rx="6" fill="#F43F5E" fill-opacity="0.2" stroke="#F43F5E"/>
+  <text x="960" y="123" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">⚡ Test Run</text>
+  <rect x="1022" y="103" width="90" height="32" rx="6" fill="#10B981"/>
+  <text x="1067" y="123" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">● Active</text>
+
+  <!-- Node 1: Trigger -->
+  <rect x="92" y="260" width="220" height="130" rx="10" fill="#161824" stroke="#3B82F6" stroke-width="2"/>
+  <rect x="108" y="276" width="70" height="20" rx="4" fill="#3B82F6" fill-opacity="0.2"/>
+  <text x="143" y="290" fill="#3B82F6" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">TRIGGER</text>
+  <text x="108" y="322" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold">Cart Abandoned (30m)</text>
+  <text x="108" y="344" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">Detects uncompleted checkout across Shopify &amp; WooCommerce</text>
+
+  <!-- Connecting Line 1 -->
+  <line x1="312" y1="325" x2="390" y2="325" stroke="#F43F5E" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="390" cy="325" r="4" fill="#F43F5E"/>
+
+  <!-- Node 2: AI Decision Node -->
+  <rect x="390" y="240" width="240" height="170" rx="10" fill="#1C1117" stroke="#F43F5E" stroke-width="2"/>
+  <rect x="406" y="256" width="90" height="20" rx="4" fill="#F43F5E"/>
+  <text x="451" y="270" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">✨ AI DECISION</text>
+  <text x="406" y="302" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold">Fraud &amp; Customer Intent Analysis</text>
+  <text x="406" y="324" fill="#FCE7F3" font-family="-apple-system, sans-serif" font-size="11">Model: llama-3.3-70b (Free Mode)</text>
+  <text x="406" y="344" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">• Checks courier return history</text>
+  <text x="406" y="362" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">• Evaluates basket high-value risk</text>
+  <text x="406" y="380" fill="#10B981" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold">Result: 94% Verified Customer</text>
+
+  <!-- Branch Line Upper: If High Value Valid -->
+  <path d="M 630 310 C 680 310, 680 230, 730 230" fill="none" stroke="#10B981" stroke-width="2"/>
+  <text x="680" y="260" fill="#10B981" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold">Safe / High Intent</text>
+
+  <!-- Branch Line Lower: If High Risk -->
+  <path d="M 630 340 C 680 340, 680 440, 730 440" fill="none" stroke="#EF4444" stroke-width="2"/>
+  <text x="680" y="400" fill="#EF4444" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold">Risk Flagged</text>
+
+  <!-- Node 3A: Action (Safe) -->
+  <rect x="730" y="170" width="280" height="120" rx="10" fill="#131B19" stroke="#10B981" stroke-width="2"/>
+  <rect x="746" y="186" width="60" height="20" rx="4" fill="#10B981" fill-opacity="0.2"/>
+  <text x="776" y="200" fill="#10B981" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">ACTION</text>
+  <text x="746" y="232" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold">Send Personalized WhatsApp Offer</text>
+  <text x="746" y="254" fill="#D1FAE5" font-family="-apple-system, sans-serif" font-size="11">Applies 5% Eid Special Coupon via WhatsApp Business Cloud API with 1-click checkout</text>
+
+  <!-- Node 3B: Action (Risk) -->
+  <rect x="730" y="380" width="280" height="120" rx="10" fill="#1B1416" stroke="#EF4444" stroke-width="2"/>
+  <rect x="746" y="396" width="60" height="20" rx="4" fill="#EF4444" fill-opacity="0.2"/>
+  <text x="776" y="410" fill="#EF4444" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">GUARD</text>
+  <text x="746" y="442" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold">Enforce Phone OTP Verification</text>
+  <text x="746" y="464" fill="#FEE2E2" font-family="-apple-system, sans-serif" font-size="11">Requires SMS phone verification before dispatching Cash on Delivery parcel</text>
+</svg>

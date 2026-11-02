@@ -1,0 +1,115 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="720" rx="16" fill="#0A0B0E"/>
+  <rect x="0.5" y="0.5" width="1199" height="719" rx="15.5" stroke="#F43F5E" stroke-opacity="0.25"/>
+  
+  <!-- Window Header -->
+  <rect width="1200" height="48" rx="16" fill="#121318"/>
+  <circle cx="28" cy="24" r="6" fill="#EF4444"/>
+  <circle cx="48" cy="24" r="6" fill="#F59E0B"/>
+  <circle cx="68" cy="24" r="6" fill="#10B981"/>
+  <rect x="420" y="12" width="360" height="24" rx="6" fill="#1E2028"/>
+  <text x="600" y="28" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">app.shopnix.io/inbox • WhatsApp &amp; Messenger Unified AI Inbox</text>
+
+  <!-- Left Column: Conversations List -->
+  <rect x="0" y="48" width="340" height="672" fill="#0F1015"/>
+  <line x1="340" y1="48" x2="340" y2="720" stroke="#22242F"/>
+  
+  <text x="24" y="86" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="16" font-weight="bold">Conversations (18)</text>
+  <rect x="236" y="70" width="84" height="24" rx="12" fill="#F43F5E" fill-opacity="0.15"/>
+  <text x="278" y="86" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">AI Active</text>
+
+  <!-- Search -->
+  <rect x="20" y="104" width="300" height="34" rx="8" fill="#181A22"/>
+  <text x="36" y="126" fill="#6B7280" font-family="-apple-system, sans-serif" font-size="12">🔍 Search customer, phone, SKU...</text>
+
+  <!-- Conversation Card 1 (Active) -->
+  <rect x="12" y="152" width="316" height="88" rx="10" fill="#F43F5E" fill-opacity="0.12" stroke="#F43F5E" stroke-opacity="0.3"/>
+  <circle cx="42" cy="184" r="18" fill="#10B981"/>
+  <text x="42" y="189" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">WA</text>
+  <text x="70" y="178" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="600">Tasnim Rahman</text>
+  <text x="70" y="198" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">ভাইয়া লাল কালার L সাইজের টা কি আছে?</text>
+  <text x="70" y="218" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="10" font-weight="600">✨ AI Suggestion Ready</text>
+  <text x="312" y="178" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="10" text-anchor="end">2m ago</text>
+
+  <!-- Conversation Card 2 -->
+  <rect x="12" y="248" width="316" height="76" rx="10" fill="#14161E"/>
+  <circle cx="42" cy="276" r="18" fill="#3B82F6"/>
+  <text x="42" y="281" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">FB</text>
+  <text x="70" y="270" fill="#E5E7EB" font-family="-apple-system, sans-serif" font-size="13" font-weight="600">Ariful Islam (Sylhet)</text>
+  <text x="70" y="290" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">আমার অর্ডারটা ডেলিভারি কবে হবে?</text>
+  <text x="312" y="270" fill="#6B7280" font-family="-apple-system, sans-serif" font-size="10" text-anchor="end">14m ago</text>
+
+  <!-- Middle Column: Live Chat Thread -->
+  <rect x="340" y="48" width="560" height="672" fill="#0D0E13"/>
+  <line x1="900" y1="48" x2="900" y2="720" stroke="#22242F"/>
+  
+  <!-- Chat Header -->
+  <rect x="340" y="48" width="560" height="56" fill="#12141B"/>
+  <text x="368" y="78" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold">Tasnim Rahman (+880 1712-345678)</text>
+  <text x="368" y="94" fill="#10B981" font-family="-apple-system, sans-serif" font-size="11">● Active via WhatsApp Cloud API</text>
+  <rect x="740" y="62" width="140" height="28" rx="6" fill="#F43F5E"/>
+  <text x="810" y="80" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">⚡ 1-Click Create Order</text>
+
+  <!-- Customer Message (Inbound) -->
+  <rect x="368" y="132" width="380" height="84" rx="12" fill="#181A24" stroke="#262835"/>
+  <text x="388" y="158" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">আসসালামু আলাইকুম, প্রিমিয়াম সিল্ক পাঞ্জাবি লাল কালার L সাইজের টা কি ধানমন্ডি ৩২ এ আগামীকাল ডেলিভারি দেওয়া যাবে?</text>
+  <text x="732" y="206" fill="#6B7280" font-family="-apple-system, sans-serif" font-size="10" text-anchor="end">12:42 PM</text>
+
+  <!-- Customer Address Message -->
+  <rect x="368" y="228" width="340" height="70" rx="12" fill="#181A24" stroke="#262835"/>
+  <text x="388" y="254" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">নাম: তাসনিম রহমান</text>
+  <text x="388" y="272" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">ঠিকানা: বাড়ি ১২, রোড ৪, ধানমন্ডি ৩২, ঢাকা</text>
+  <text x="388" y="290" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">ফোন: ০১৭১২-৩৪৫৬৭৮</text>
+
+  <!-- AI Copilot Draft Suggestion (Approval Mode) -->
+  <rect x="368" y="324" width="504" height="200" rx="12" fill="#1C1117" stroke="#F43F5E" stroke-dasharray="4 4"/>
+  <rect x="388" y="340" width="130" height="22" rx="4" fill="#F43F5E"/>
+  <text x="453" y="355" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">✨ AI COPILOT DRAFT</text>
+  <text x="530" y="355" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold">Approval Mode Active</text>
+
+  <text x="388" y="386" fill="#FCE7F3" font-family="-apple-system, sans-serif" font-size="12">ওয়ালাইকুম আসসালাম ভাইয়া! জ্বী, প্রিমিয়াম সিল্ক পাঞ্জাবি (লাল, সাইজ L) আমাদের ইন-স্টকে আছে (স্টক: ১৪ পিস)।</text>
+  <text x="388" y="410" fill="#FCE7F3" font-family="-apple-system, sans-serif" font-size="12">ধানমন্ডি ৩২ এ আমরা আগামীকালই স্টিডফাস্ট কুরিয়ারের মাধ্যমে ক্যাশ-অন-ডেলিভারিতে পৌঁছে দিতে পারব।</text>
+  <text x="388" y="434" fill="#FCE7F3" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold">মোট মূল্য: ৳ ২,৪৫০ (প্রোডাক্ট ৳ ২,৩৫০ + ঢাকা হোম ডেলিভারি ৳ ১০০)।</text>
+
+  <!-- Action Buttons on AI Card -->
+  <rect x="388" y="464" width="140" height="34" rx="6" fill="#F43F5E"/>
+  <text x="458" y="485" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">✓ Approve &amp; Send</text>
+
+  <rect x="540" y="464" width="100" height="34" rx="6" fill="#252735"/>
+  <text x="590" y="485" fill="#D1D5DB" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">✎ Edit Reply</text>
+
+  <rect x="650" y="464" width="100" height="34" rx="6" fill="#252735"/>
+  <text x="700" y="485" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">✕ Dismiss</text>
+
+  <!-- Message Input Bar -->
+  <rect x="368" y="650" width="504" height="46" rx="8" fill="#181A22" stroke="#262835"/>
+  <text x="388" y="678" fill="#6B7280" font-family="-apple-system, sans-serif" font-size="12">Type WhatsApp message or use AI quick prompt (/discount, /invoice)...</text>
+
+  <!-- Right Column: Instant Order Generator Panel -->
+  <rect x="900" y="48" width="300" height="672" fill="#0F1015"/>
+  <text x="924" y="86" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="14" font-weight="bold">AI 1-Click Order Intake</text>
+  <text x="924" y="104" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">Extracted automatically from chat</text>
+
+  <rect x="924" y="128" width="252" height="60" rx="8" fill="#181A22"/>
+  <text x="936" y="150" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">Customer Name</text>
+  <text x="936" y="172" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12" font-weight="600">Tasnim Rahman</text>
+
+  <rect x="924" y="196" width="252" height="60" rx="8" fill="#181A22"/>
+  <text x="936" y="218" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">Delivery Address</text>
+  <text x="936" y="240" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12" font-weight="600">House 12, Road 4, Dhanmondi 32</text>
+
+  <rect x="924" y="264" width="252" height="80" rx="8" fill="#181A22"/>
+  <text x="936" y="286" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">Parsed Line Item</text>
+  <text x="936" y="306" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12" font-weight="600">Premium Silk Panjabi (L, Red)</text>
+  <text x="936" y="326" fill="#10B981" font-family="-apple-system, sans-serif" font-size="11">1x @ ৳ 2,350 • SKU: PS-RED-L</text>
+
+  <rect x="924" y="352" width="252" height="50" rx="8" fill="#181A22"/>
+  <text x="936" y="372" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11">Courier Assigned</text>
+  <text x="936" y="390" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12" font-weight="600">Steadfast Courier (Inside Dhaka ৳100)</text>
+
+  <rect x="924" y="420" width="252" height="42" rx="8" fill="#1C1117" stroke="#F43F5E"/>
+  <text x="936" y="445" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="13" font-weight="bold">Total COD: ৳ 2,450</text>
+
+  <rect x="924" y="480" width="252" height="40" rx="8" fill="#F43F5E"/>
+  <text x="1050" y="505" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Confirm &amp; Dispatch Parcel 🚚</text>
+</svg>

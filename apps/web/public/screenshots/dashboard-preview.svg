@@ -1,0 +1,124 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Window Background -->
+  <rect width="1200" height="720" rx="16" fill="#0A0B0E"/>
+  <rect x="0.5" y="0.5" width="1199" height="719" rx="15.5" stroke="#F43F5E" stroke-opacity="0.25"/>
+  
+  <!-- Window Header -->
+  <rect width="1200" height="48" rx="16" fill="#121318"/>
+  <circle cx="28" cy="24" r="6" fill="#EF4444"/>
+  <circle cx="48" cy="24" r="6" fill="#F59E0B"/>
+  <circle cx="68" cy="24" r="6" fill="#10B981"/>
+  <rect x="420" y="12" width="360" height="24" rx="6" fill="#1E2028"/>
+  <text x="600" y="28" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="11" text-anchor="middle">app.shopnix.io/dashboard • Executive Command Center</text>
+
+  <!-- Sidebar -->
+  <rect x="0" y="48" width="220" height="672" fill="#0F1015"/>
+  <line x1="220" y1="48" x2="220" y2="720" stroke="#22242F"/>
+  <!-- Logo in sidebar -->
+  <rect x="24" y="72" width="28" height="28" rx="6" fill="#F43F5E"/>
+  <text x="60" y="91" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="15" font-weight="bold">Shopnix</text>
+  
+  <!-- Nav items -->
+  <rect x="16" y="124" width="188" height="34" rx="8" fill="#F43F5E" fill-opacity="0.15"/>
+  <text x="48" y="146" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="13" font-weight="600">📊 Overview Dashboard</text>
+  <text x="48" y="186" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="13">🛍️ Multi-Store Orders</text>
+  <text x="48" y="226" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="13">📦 Products &amp; Catalog</text>
+  <text x="48" y="266" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="13">💬 Unified Inbox (WA)</text>
+  <text x="48" y="306" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="13">🚚 Courier Dispatch</text>
+  <text x="48" y="346" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="13">⚡ Automations</text>
+  <text x="48" y="386" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="13">✨ AI Operations Copilot</text>
+  
+  <!-- KPI Grid -->
+  <!-- KPI 1: Total GMV -->
+  <rect x="248" y="72" width="220" height="100" rx="12" fill="#15171E" stroke="#22242F"/>
+  <text x="268" y="98" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">Today's Revenue (GMV)</text>
+  <text x="268" y="132" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="22" font-weight="bold">৳ 482,900</text>
+  <rect x="390" y="86" width="62" height="20" rx="10" fill="#10B981" fill-opacity="0.15"/>
+  <text x="421" y="100" fill="#10B981" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">+28.4%</text>
+
+  <!-- KPI 2: Live Orders -->
+  <rect x="484" y="72" width="220" height="100" rx="12" fill="#15171E" stroke="#22242F"/>
+  <text x="504" y="98" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">Total Active Orders</text>
+  <text x="504" y="132" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="22" font-weight="bold">1,429</text>
+  <rect x="626" y="86" width="62" height="20" rx="10" fill="#F43F5E" fill-opacity="0.15"/>
+  <text x="657" y="100" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Live Sync</text>
+
+  <!-- KPI 3: Courier Delivery Rate -->
+  <rect x="720" y="72" width="220" height="100" rx="12" fill="#15171E" stroke="#22242F"/>
+  <text x="740" y="98" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">Courier Success Rate</text>
+  <text x="740" y="132" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="22" font-weight="bold">99.2%</text>
+  <rect x="862" y="86" width="62" height="20" rx="10" fill="#10B981" fill-opacity="0.15"/>
+  <text x="893" y="100" fill="#10B981" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Steadfast</text>
+
+  <!-- KPI 4: COD Payouts -->
+  <rect x="956" y="72" width="220" height="100" rx="12" fill="#15171E" stroke="#22242F"/>
+  <text x="976" y="98" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">Net COD Settled</text>
+  <text x="976" y="132" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="22" font-weight="bold">৳ 318,450</text>
+  <rect x="1098" y="86" width="62" height="20" rx="10" fill="#F59E0B" fill-opacity="0.15"/>
+  <text x="1129" y="100" fill="#F59E0B" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Dispatched</text>
+
+  <!-- Main Chart Area -->
+  <rect x="248" y="192" width="630" height="280" rx="12" fill="#13141B" stroke="#22242F"/>
+  <text x="272" y="222" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">Omnichannel Revenue Ingestion Trend (7 Days)</text>
+  
+  <!-- Line Chart Path with Rose Gradient -->
+  <defs>
+    <linearGradient id="roseGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F43F5E" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#F43F5E" stop-opacity="0.0"/>
+    </linearGradient>
+  </defs>
+  <path d="M 280 410 Q 350 360, 420 380 T 560 310 T 700 260 T 840 230 L 840 440 L 280 440 Z" fill="url(#roseGradient)"/>
+  <path d="M 280 410 Q 350 360, 420 380 T 560 310 T 700 260 T 840 230" fill="none" stroke="#F43F5E" stroke-width="3"/>
+
+  <!-- Right Pane: Live Channels & WhatsApp Ingestion -->
+  <rect x="894" y="192" width="282" height="280" rx="12" fill="#13141B" stroke="#22242F"/>
+  <text x="914" y="222" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">Active Sales Channels</text>
+  
+  <rect x="914" y="244" width="242" height="42" rx="8" fill="#1A1C25"/>
+  <text x="928" y="269" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">🟢 WhatsApp Cloud API</text>
+  <text x="1136" y="269" fill="#10B981" font-family="-apple-system, sans-serif" font-size="11" text-anchor="end">48 msgs</text>
+
+  <rect x="914" y="296" width="242" height="42" rx="8" fill="#1A1C25"/>
+  <text x="928" y="321" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">🔵 Shopify Storefront</text>
+  <text x="1136" y="321" fill="#3B82F6" font-family="-apple-system, sans-serif" font-size="11" text-anchor="end">Synced</text>
+
+  <rect x="914" y="348" width="242" height="42" rx="8" fill="#1A1C25"/>
+  <text x="928" y="373" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">🟣 WooCommerce Engine</text>
+  <text x="1136" y="373" fill="#A855F7" font-family="-apple-system, sans-serif" font-size="11" text-anchor="end">Active</text>
+
+  <rect x="914" y="400" width="242" height="42" rx="8" fill="#1A1C25"/>
+  <text x="928" y="425" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">🚚 Steadfast Auto-Booking</text>
+  <text x="1136" y="425" fill="#10B981" font-family="-apple-system, sans-serif" font-size="11" text-anchor="end">Auto</text>
+
+  <!-- Bottom Data Table: Recent Omnichannel Orders -->
+  <rect x="248" y="490" width="928" height="206" rx="12" fill="#13141B" stroke="#22242F"/>
+  <text x="272" y="520" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="14" font-weight="600">Real-Time Omnichannel Order Stream</text>
+  
+  <!-- Row 1 -->
+  <text x="272" y="556" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">#SN-91024</text>
+  <text x="372" y="556" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">Nusrat Jahan (Dhanmondi, Dhaka)</text>
+  <text x="660" y="556" fill="#F43F5E" font-family="-apple-system, sans-serif" font-size="12">WhatsApp 1-Click</text>
+  <text x="820" y="556" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">৳ 3,250</text>
+  <rect x="920" y="542" width="76" height="20" rx="10" fill="#10B981" fill-opacity="0.15"/>
+  <text x="958" y="556" fill="#10B981" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Dispatched</text>
+  <text x="1140" y="556" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12" text-anchor="end">Steadfast #ST-99120</text>
+
+  <!-- Row 2 -->
+  <text x="272" y="596" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">#SN-91023</text>
+  <text x="372" y="596" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">Tanvir Hasan (Chittagong GEC)</text>
+  <text x="660" y="596" fill="#3B82F6" font-family="-apple-system, sans-serif" font-size="12">Shopify Ingest</text>
+  <text x="820" y="596" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">৳ 5,800</text>
+  <rect x="920" y="582" width="76" height="20" rx="10" fill="#F59E0B" fill-opacity="0.15"/>
+  <text x="958" y="596" fill="#F59E0B" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Processing</text>
+  <text x="1140" y="596" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12" text-anchor="end">Pathao Parcel Ready</text>
+
+  <!-- Row 3 -->
+  <text x="272" y="636" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12">#SN-91022</text>
+  <text x="372" y="636" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">Farhana Akhter (Uttara Sector 7)</text>
+  <text x="660" y="636" fill="#10B981" font-family="-apple-system, sans-serif" font-size="12">Messenger Copilot</text>
+  <text x="820" y="636" fill="#FFFFFF" font-family="-apple-system, sans-serif" font-size="12">৳ 1,950</text>
+  <rect x="920" y="622" width="76" height="20" rx="10" fill="#10B981" fill-opacity="0.15"/>
+  <text x="958" y="636" fill="#10B981" font-family="-apple-system, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Delivered</text>
+  <text x="1140" y="636" fill="#9CA3AF" font-family="-apple-system, sans-serif" font-size="12" text-anchor="end">COD Collected ৳1,950</text>
+</svg>
