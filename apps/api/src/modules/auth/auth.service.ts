@@ -76,68 +76,101 @@ export class AuthService {
       uniqueSlug = `${baseSlug}-${counter++}`;
     }
 
-    const session = await this.connection.startSession();
-    session.startTransaction();
+    const orgId = new Types.ObjectId();
+    const userId = new Types.ObjectId();
+
+    const createdOrg = new this.orgModel({
+      _id: orgId,
+      name: input.store_name,
+      slug: uniqueSlug,
+      owner_id: userId,
+      store_name: input.store_name,
+      store_phone: input.phone_number,
+      store_email: input.email.toLowerCase(),
+      store_address: {
+        address_line: 'Dhaka',
+        city: 'Dhaka',
+        zone: '',
+        area: '',
+      },
+      subscription_plan: 'starter',
+      subscription_status: 'trial',
+      settings: {
+        currency: 'BDT',
+        currency_symbol: '৳',
+        timezone: 'Asia/Dhaka',
+        low_stock_alert_threshold: 5,
+      },
+    });
+
+    const createdUser = new this.userModel({
+      _id: userId,
+      first_name: input.first_name,
+      last_name: input.last_name,
+      email: input.email.toLowerCase(),
+      password_hash: passwordHash,
+      phone_number: input.phone_number,
+      role: 'owner',
+      organization_id: orgId,
+      is_active: true,
+    });
+
+    // Check if MongoDB environment supports multi-document transactions (requires replica set)
+    let session = null;
+    let isTransactionActive = false;
 
     try {
-      const orgId = new Types.ObjectId();
-      const userId = new Types.ObjectId();
-
-      const createdOrg = new this.orgModel({
-        _id: orgId,
-        name: input.store_name,
-        slug: uniqueSlug,
-        owner_id: userId,
-        store_name: input.store_name,
-        store_phone: input.phone_number,
-        store_email: input.email.toLowerCase(),
-        store_address: {
-          address_line: 'Dhaka',
-          city: 'Dhaka',
-          zone: '',
-          area: '',
-        },
-        subscription_plan: 'starter',
-        subscription_status: 'trial',
-        settings: {
-          currency: 'BDT',
-          currency_symbol: '৳',
-          timezone: 'Asia/Dhaka',
-          low_stock_alert_threshold: 5,
-        },
-      });
-
-      const createdUser = new this.userModel({
-        _id: userId,
-        first_name: input.first_name,
-        last_name: input.last_name,
-        email: input.email.toLowerCase(),
-        password_hash: passwordHash,
-        phone_number: input.phone_number,
-        role: 'owner',
-        organization_id: orgId,
-        is_active: true,
-      });
-
-      await createdOrg.save({ session });
-      await createdUser.save({ session });
-
-      await session.commitTransaction();
-
-      const tokens = await this.generateTokens(createdUser);
-
-      return {
-        tokens,
-        user: this.mapUser(createdUser),
-        organization: this.mapOrg(createdOrg),
-      };
-    } catch (error) {
-      await session.abortTransaction();
-      this.logger.error(`Registration failed: ${(error as Error).message}`);
-      throw new BadRequestException('Registration failed. Please check your information and try again.');
-    } finally {
-      session.endSession();
+      session = await this.connection.startSession();
+      session.startTransaction();
+      isTransactionActive = true;
+    } catch (sessionErr) {
+      // Standalone MongoDB does not support transactions; fallback gracefully
+      this.logger.debug(
+        `MongoDB transactions not supported on this instance (${(sessionErr as Error).message}). Using resilient sequential writes.`
+      );
+      if (session) {
+        session.endSession();
+        session = null;
+      }
+      isTransactionActive = false;
     }
+
+    if (isTransactionActive && session) {
+      try {
+        await createdOrg.save({ session });
+        await createdUser.save({ session });
+        await session.commitTransaction();
+      } catch (error) {
+        await session.abortTransaction();
+        this.logger.error(`Registration transaction failed: ${(error as Error).message}`);
+        throw new BadRequestException((error as Error).message || 'Registration failed');
+      } finally {
+        session.endSession();
+      }
+    } else {
+      // Resilient sequential save with compensating rollback
+      try {
+        await createdOrg.save();
+        try {
+          await createdUser.save();
+        } catch (userSaveError) {
+          // Compensating rollback: delete created organization if user persistence fails
+          await this.orgModel.findByIdAndDelete(orgId).exec();
+          throw userSaveError;
+        }
+      } catch (saveError) {
+        this.logger.error(`Registration save failed: ${(saveError as Error).message}`);
+        throw new BadRequestException((saveError as Error).message || 'Failed to complete registration');
+      }
+    }
+
+    const tokens = await this.generateTokens(createdUser);
+
+    return {
+      tokens,
+      user: this.mapUser(createdUser),
+      organization: this.mapOrg(createdOrg),
+    };
   }
 
   async login(input: LoginInput): Promise<AuthResponse> {

@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Sparkles, ArrowRight, AlertCircle } from 'lucide-react';
+import { ArrowRight, AlertCircle, Eye, EyeOff } from 'lucide-react';
 import { api, setStoredTokens } from '../../../lib/api';
 import { useAuthStore } from '../../../stores/auth.store';
+import { ShopnixIcon } from '../../../components/brand';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,9 +39,9 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center p-4 bg-muted/20">
       <div className="w-full max-w-sm rounded-xl border border-border bg-card p-7 shadow-xl space-y-6">
         <div className="flex flex-col items-center text-center">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs mb-3">
-            <Sparkles className="h-5 w-5" />
-          </div>
+          <Link href="/" className="mb-3 hover:scale-105 transition-transform">
+            <ShopnixIcon size={44} />
+          </Link>
           <h1 className="text-xl font-bold tracking-tight text-foreground">
             Sign in to Shopnix
           </h1>

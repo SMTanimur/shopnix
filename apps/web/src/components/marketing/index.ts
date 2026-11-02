@@ -1,4 +1,5 @@
 export * from './brand-logos';
+export * from './hero-background';
 export * from './landing-navbar';
 export * from './landing-hero';
 export * from './app-showcase';

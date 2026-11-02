@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { useUIStore } from '../../../stores/ui.store';
 import { cn } from '@shopnix/utils';
+import { ShopnixIcon } from '../../brand';
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -66,15 +67,18 @@ export function Sidebar() {
         <div className="flex h-14 items-center justify-between px-4 border-b border-border">
           <Link
             href="/dashboard"
-            className="flex items-center gap-2.5 overflow-hidden font-bold tracking-tight text-foreground"
+            className="flex items-center gap-2.5 overflow-hidden font-bold tracking-tight text-foreground group"
           >
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-xs">
-              <Sparkles className="h-4 w-4" />
-            </div>
+            <ShopnixIcon size={30} className="shrink-0" />
             {!isSidebarCollapsed && (
-              <span className="text-base font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-600">
-                Shopnix
-              </span>
+              <div className="flex flex-col leading-none">
+                <span className="text-base font-extrabold tracking-tight text-foreground">
+                  Shopnix
+                </span>
+                <span className="text-[9px] font-bold tracking-wider uppercase text-primary mt-0.5">
+                  Ecommerce OS
+                </span>
+              </div>
             )}
           </Link>
 

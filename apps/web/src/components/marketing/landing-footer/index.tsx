@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, ShieldCheck, Heart } from 'lucide-react';
+import { ShieldCheck, Heart } from 'lucide-react';
+import { ShopnixLogo } from '../../brand';
 
 export function LandingFooter() {
   return (
@@ -11,13 +12,8 @@ export function LandingFooter() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
           {/* Brand Info */}
           <div className="col-span-2 space-y-4">
-            <Link href="/" className="flex items-center gap-2.5 font-bold tracking-tight">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-xs">
-                <Sparkles className="h-4 w-4" />
-              </div>
-              <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-rose-600">
-                Shopnix
-              </span>
+            <Link href="/" className="inline-block group">
+              <ShopnixLogo size={34} />
             </Link>
             <p className="text-xs leading-relaxed max-w-sm">
               The 360° ecommerce operating system, high-converting 1-click COD funnel engine, and
