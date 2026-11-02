@@ -7,10 +7,13 @@ import {
   Logger,
 } from '@nestjs/common';
 import { Response, Request } from 'express';
+import { FileLoggerService } from '../logger/file-logger.service';
 
 @Catch()
 export class GlobalHttpExceptionFilter implements ExceptionFilter {
   private readonly logger = new Logger(GlobalHttpExceptionFilter.name);
+
+  constructor(private readonly fileLogger?: FileLoggerService) {}
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -37,6 +40,14 @@ export class GlobalHttpExceptionFilter implements ExceptionFilter {
     } else if (exception instanceof Error) {
       message = exception.message;
       this.logger.error(`Unhandled Exception at ${request.url}: ${exception.message}`, exception.stack);
+    }
+
+    if (this.fileLogger && status >= 500) {
+      this.fileLogger.error(
+        `Unhandled Exception on ${request.method} ${request.url}: ${message}`,
+        exception instanceof Error ? exception.stack : undefined,
+        'GlobalFilter',
+      );
     }
 
     response.status(status).json({

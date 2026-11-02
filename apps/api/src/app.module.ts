@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { DatabaseModule } from './database/database.module';
+import { LoggerModule } from './common/logger/logger.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsersModule } from './modules/users/users.module';
 import { OrganizationsModule } from './modules/organizations/organizations.module';
@@ -24,6 +25,7 @@ import { AdminModule } from './modules/admin/admin.module';
       isGlobal: true,
       load: [configuration],
     }),
+    LoggerModule,
     DatabaseModule,
     HealthModule,
     AuthModule,

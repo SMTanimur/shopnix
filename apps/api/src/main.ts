@@ -4,10 +4,16 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { GlobalHttpExceptionFilter } from './common/filters/http-exception.filter';
+import { FileLoggerService } from './common/logger/file-logger.service';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+  const fileLogger = app.get(FileLoggerService);
+
+  // Use Structured File Logger
+  app.useLogger(fileLogger);
 
   // Security Headers
   app.use(
@@ -29,8 +35,11 @@ async function bootstrap() {
   const apiPrefix = configService.get<string>('apiPrefix', 'api/v1');
   app.setGlobalPrefix(apiPrefix);
 
-  // Global Exception Filter
-  app.useGlobalFilters(new GlobalHttpExceptionFilter());
+  // Global File Logging Interceptor (records every controller & endpoint to disk)
+  app.useGlobalInterceptors(new LoggingInterceptor(fileLogger));
+
+  // Global Exception Filter with File Logging
+  app.useGlobalFilters(new GlobalHttpExceptionFilter(fileLogger));
 
   // Swagger OpenAPI Documentation
   const swaggerConfig = new DocumentBuilder()
@@ -54,8 +63,9 @@ async function bootstrap() {
 
   const port = configService.get<number>('port', 8000);
   await app.listen(port);
-  console.log(`[Shopnix API] Running on: http://localhost:${port}/${apiPrefix}`);
-  console.log(`[Shopnix API] Swagger Docs: http://localhost:${port}/api/docs`);
+  fileLogger.log(`[Shopnix API] Running on: http://localhost:${port}/${apiPrefix}`, 'Bootstrap');
+  fileLogger.log(`[Shopnix API] Swagger Docs: http://localhost:${port}/api/docs`, 'Bootstrap');
+  fileLogger.log(`[Shopnix API] Controller & API logs written to: ${process.env.LOG_DIR || 'logs/'}`, 'Bootstrap');
 }
 
 bootstrap();
