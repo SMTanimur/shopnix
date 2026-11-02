@@ -27,7 +27,7 @@ export function setStoredTokens(tokens: AuthTokens | null): void {
 }
 
 export const api = createApiClient({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1',
   getTokens: getStoredTokens,
   setTokens: setStoredTokens,
   onUnauthorized: () => {

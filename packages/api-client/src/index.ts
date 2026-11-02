@@ -6,6 +6,11 @@ import { InventoryApi } from './inventory.api';
 import { CustomersApi } from './customers.api';
 import { CouriersApi } from './couriers.api';
 import { AnalyticsApi } from './analytics.api';
+import { StoresApi } from './stores.api';
+import { InboxApi } from './inbox.api';
+import { AiApi } from './ai.api';
+import { AutomationApi } from './automation.api';
+import { AdminApi } from './admin.api';
 
 export * from './client';
 export * from './auth.api';
@@ -15,6 +20,11 @@ export * from './inventory.api';
 export * from './customers.api';
 export * from './couriers.api';
 export * from './analytics.api';
+export * from './stores.api';
+export * from './inbox.api';
+export * from './ai.api';
+export * from './automation.api';
+export * from './admin.api';
 
 export function createApiClient(config: ApiClientConfig) {
   const client = new ShopnixApiClient(config);
@@ -30,6 +40,11 @@ export function createApiClient(config: ApiClientConfig) {
     customers: new CustomersApi(axios),
     couriers: new CouriersApi(axios),
     analytics: new AnalyticsApi(axios),
+    stores: new StoresApi(axios),
+    inbox: new InboxApi(axios),
+    ai: new AiApi(axios),
+    automation: new AutomationApi(axios),
+    admin: new AdminApi(axios),
   };
 }
 

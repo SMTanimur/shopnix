@@ -5,3 +5,8 @@ export * from './inventory.schema';
 export * from './customer.schema';
 export * from './courier.schema';
 export * from './organization.schema';
+export * from './store.schema';
+export * from './inbox.schema';
+export * from './ai.schema';
+export * from './automation.schema';
+export * from './admin.schema';

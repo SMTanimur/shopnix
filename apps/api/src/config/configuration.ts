@@ -1,8 +1,8 @@
 export default () => ({
-  port: parseInt(process.env.PORT || '4000', 10),
+  port: parseInt(process.env.PORT || '8000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
   apiPrefix: process.env.API_PREFIX || 'api/v1',
-  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5000',
   database: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/shopnix',
   },
@@ -16,5 +16,8 @@ export default () => ({
     accessExpiration: process.env.JWT_ACCESS_EXPIRATION || '15m',
     refreshSecret: process.env.JWT_REFRESH_SECRET || 'dev-refresh-secret-key-shopnix-development',
     refreshExpiration: process.env.JWT_REFRESH_EXPIRATION || '7d',
+  },
+  encryption: {
+    key: process.env.ENCRYPTION_KEY || 'shopnix-dev-encryption-key-32ch',
   },
 });

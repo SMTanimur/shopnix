@@ -18,7 +18,7 @@ async function bootstrap() {
   );
 
   // CORS Configuration
-  const corsOrigin = configService.get<string>('corsOrigin', 'http://localhost:3000');
+  const corsOrigin = configService.get<string>('corsOrigin', 'http://localhost:5000');
   app.enableCors({
     origin: corsOrigin === '*' ? true : [corsOrigin],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
@@ -52,7 +52,7 @@ async function bootstrap() {
     },
   });
 
-  const port = configService.get<number>('port', 4000);
+  const port = configService.get<number>('port', 8000);
   await app.listen(port);
   console.log(`[Shopnix API] Running on: http://localhost:${port}/${apiPrefix}`);
   console.log(`[Shopnix API] Swagger Docs: http://localhost:${port}/api/docs`);
