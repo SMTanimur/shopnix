@@ -23,8 +23,8 @@ export class AdminAuditLog {
   @Prop({ type: Object, default: {} })
   details: Record<string, any>;
 
-  @Prop({ default: null })
-  ip_address: string;
+  @Prop({ type: String, default: null })
+  ip_address: string | null;
 }
 
 export const AdminAuditLogSchema = SchemaFactory.createForClass(AdminAuditLog);

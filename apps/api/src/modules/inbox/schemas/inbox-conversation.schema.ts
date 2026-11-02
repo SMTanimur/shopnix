@@ -17,8 +17,8 @@ export class InboxConversation {
   @Prop({ required: true })
   customer_name: string;
 
-  @Prop({ default: null })
-  customer_phone: string;
+  @Prop({ type: String, default: null })
+  customer_phone: string | null;
 
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Customer', default: null })
   customer_id: MongooseSchema.Types.ObjectId | null;

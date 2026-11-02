@@ -23,8 +23,8 @@ export class AdminUser {
   @Prop({ default: true })
   is_active: boolean;
 
-  @Prop({ default: null })
-  last_login_at: Date;
+  @Prop({ type: Date, default: null })
+  last_login_at: Date | null;
 }
 
 export const AdminUserSchema = SchemaFactory.createForClass(AdminUser);

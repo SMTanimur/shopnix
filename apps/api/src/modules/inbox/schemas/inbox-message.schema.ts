@@ -23,17 +23,17 @@ export class InboxMessage {
   @Prop({ required: true })
   content: string;
 
-  @Prop({ default: null })
-  media_url: string;
+  @Prop({ type: String, default: null })
+  media_url: string | null;
 
-  @Prop({ default: null })
-  external_message_id: string;
+  @Prop({ type: String, default: null })
+  external_message_id: string | null;
 
   @Prop({ default: false })
   is_ai_generated: boolean;
 
-  @Prop({ default: null, enum: ['pending', 'approved', 'rejected', null] })
-  ai_approval_status: string;
+  @Prop({ type: String, default: null, enum: ['pending', 'approved', 'rejected', null] })
+  ai_approval_status: string | null;
 }
 
 export const InboxMessageSchema = SchemaFactory.createForClass(InboxMessage);

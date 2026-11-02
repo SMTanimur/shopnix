@@ -8,17 +8,17 @@ export class StoreIntegration {
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Organization', required: true, index: true })
   organization_id: MongooseSchema.Types.ObjectId;
 
+  @Prop({ required: true, enum: ['shopify', 'woocommerce', 'custom_api'] })
+  platform: 'shopify' | 'woocommerce' | 'custom_api';
+
   @Prop({ required: true })
   name: string;
-
-  @Prop({ required: true, enum: ['shopify', 'woocommerce', 'custom', 'manual'] })
-  platform: 'shopify' | 'woocommerce' | 'custom' | 'manual';
 
   @Prop({ required: true })
   store_url: string;
 
-  @Prop({ default: null })
-  logo_url: string;
+  @Prop({ type: String, default: null })
+  logo_url: string | null;
 
   @Prop({ required: true, enum: ['connected', 'disconnected', 'error', 'syncing'], default: 'connected' })
   connection_status: 'connected' | 'disconnected' | 'error' | 'syncing';
@@ -32,13 +32,13 @@ export class StoreIntegration {
   @Prop({ default: 30 })
   sync_interval_minutes: number;
 
-  @Prop({ default: null })
+  @Prop({ type: Date, default: null })
   last_synced_at: Date | null;
 
-  @Prop({ default: null, enum: ['success', 'failed', 'partial', null] })
+  @Prop({ type: String, default: null, enum: ['success', 'failed', 'partial', null] })
   last_sync_status: string | null;
 
-  @Prop({ default: null })
+  @Prop({ type: String, default: null })
   last_sync_error: string | null;
 
   @Prop({ default: 0 })

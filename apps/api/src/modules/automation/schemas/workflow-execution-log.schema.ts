@@ -28,8 +28,8 @@ export class WorkflowExecutionLog {
   @Prop({ default: 0 })
   duration_ms: number;
 
-  @Prop({ default: null })
-  error: string;
+  @Prop({ type: String, default: null })
+  error: string | null;
 }
 
 export const WorkflowExecutionLogSchema = SchemaFactory.createForClass(WorkflowExecutionLog);

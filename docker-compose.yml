@@ -27,10 +27,9 @@ services:
       # Mount application source for live real-time code reloading without restarting
       - ./apps/api:/app/apps/api
       - ./packages:/app/packages
-      # Isolate node_modules & dist to preserve container Linux dependencies
+      # Isolate node_modules to preserve container Linux dependencies
       - /app/node_modules
       - /app/apps/api/node_modules
-      - /app/apps/api/dist
     depends_on:
       mongo:
         condition: service_healthy
