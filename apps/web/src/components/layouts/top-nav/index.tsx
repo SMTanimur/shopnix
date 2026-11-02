@@ -3,9 +3,9 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { Menu, Search, Bell, LogOut, Store, User as UserIcon } from 'lucide-react';
-import { useUIStore } from '../../stores/ui.store';
-import { useAuthStore } from '../../stores/auth.store';
-import { api } from '../../lib/api';
+import { useUIStore } from '../../../stores/ui.store';
+import { useAuthStore } from '../../../stores/auth.store';
+import { api } from '../../../lib/api';
 
 export function TopNav() {
   const router = useRouter();

@@ -16,7 +16,7 @@ import {
   ChevronRight,
   Sparkles,
 } from 'lucide-react';
-import { useUIStore } from '../../stores/ui.store';
+import { useUIStore } from '../../../stores/ui.store';
 import { cn } from '@shopnix/utils';
 
 export function Sidebar() {

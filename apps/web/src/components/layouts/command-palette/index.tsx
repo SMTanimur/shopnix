@@ -15,7 +15,7 @@ import {
   Search,
   X,
 } from 'lucide-react';
-import { useUIStore } from '../../stores/ui.store';
+import { useUIStore } from '../../../stores/ui.store';
 
 export function CommandPalette() {
   const router = useRouter();

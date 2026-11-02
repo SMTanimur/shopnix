@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Sidebar } from './sidebar';
-import { TopNav } from './top-nav';
-import { CommandPalette } from './command-palette';
-import { useUIStore } from '../../stores/ui.store';
+import { Sidebar } from '../sidebar';
+import { TopNav } from '../top-nav';
+import { CommandPalette } from '../command-palette';
+import { useUIStore } from '../../../stores/ui.store';
 import { cn } from '@shopnix/utils';
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
