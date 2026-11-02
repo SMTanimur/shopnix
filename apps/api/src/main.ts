@@ -62,7 +62,7 @@ async function bootstrap() {
   });
 
   const port = configService.get<number>('port', 8000);
-  await app.listen(port);
+  await app.listen(port, '0.0.0.0');
   fileLogger.log(`[Shopnix API] Running on: http://localhost:${port}/${apiPrefix}`, 'Bootstrap');
   fileLogger.log(`[Shopnix API] Swagger Docs: http://localhost:${port}/api/docs`, 'Bootstrap');
   fileLogger.log(`[Shopnix API] Controller & API logs written to: ${process.env.LOG_DIR || 'logs/'}`, 'Bootstrap');

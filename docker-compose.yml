@@ -20,7 +20,11 @@ services:
       - JWT_REFRESH_SECRET=dev-refresh-secret-key-shopnix-development
       - JWT_REFRESH_EXPIRATION=7d
       - ENCRYPTION_KEY=shopnix-dev-encryption-key-32ch
+      # Cross-platform polling for instantaneous real-time reload on Windows host file changes
+      - TSC_WATCHFILE=PriorityPollingInterval
+      - TSC_WATCHDIRECTORY=DynamicPriorityPolling
       - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
       - WATCHPACK_POLLING=true
       - LOG_DIR=/app/apps/api/logs
     volumes:
