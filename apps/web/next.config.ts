@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
   transpilePackages: [
@@ -7,6 +8,7 @@ const nextConfig: NextConfig = {
     '@shopnix/utils',
     '@shopnix/api-client',
   ],
+  outputFileTracingRoot: path.join(__dirname, '../../'),
   images: {
     remotePatterns: [
       {
