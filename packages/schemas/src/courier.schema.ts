@@ -4,7 +4,9 @@ export const courierProviderEnum = z.enum([
   'steadfast',
   'pathao',
   'redx',
+  'paperfly',
   'ecourier',
+  'carrybee',
   'sandbox',
 ]);
 

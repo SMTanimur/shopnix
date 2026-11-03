@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface ShopnixLogoProps {
+export interface ShopnixLogoProps {
   variant?: 'full' | 'icon' | 'horizontal';
   size?: number;
   className?: string;

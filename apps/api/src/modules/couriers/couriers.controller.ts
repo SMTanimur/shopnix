@@ -58,4 +58,14 @@ export class CouriersController {
     const tracking = await this.couriersService.track(user.organizationId, consignmentId);
     return { success: true, data: tracking };
   }
+
+  @Get('fraud-check/:phone')
+  @ApiOperation({ summary: 'Check cross-courier customer phone COD delivery vs return ratio' })
+  async checkFraudRisk(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('phone') phone: string
+  ) {
+    const result = await this.couriersService.checkFraudRisk(user.organizationId, phone);
+    return { success: true, data: result };
+  }
 }

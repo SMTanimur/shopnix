@@ -1,4 +1,4 @@
-export type StorePlatform = 'shopify' | 'woocommerce' | 'custom' | 'custom_api' | 'manual';
+export type StorePlatform = 'shopify' | 'woocommerce' | 'daraz' | 'custom' | 'custom_api' | 'manual';
 
 export type StoreConnectionStatus = 'connected' | 'disconnected' | 'error' | 'syncing';
 

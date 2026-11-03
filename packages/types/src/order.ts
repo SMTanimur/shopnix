@@ -8,7 +8,7 @@ export type OrderStatus =
   | 'returned';
 
 export type PaymentStatus = 'unpaid' | 'paid' | 'partial' | 'refunded';
-export type PaymentMethod = 'cod' | 'bkash' | 'nagad' | 'bank_transfer' | 'card';
+export type PaymentMethod = 'cod' | 'bkash' | 'nagad' | 'rocket' | 'sslcommerz' | 'aamarpay' | 'bank_transfer' | 'card';
 
 export interface OrderItem {
   product_id: string;

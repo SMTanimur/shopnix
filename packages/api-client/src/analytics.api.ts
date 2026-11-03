@@ -24,4 +24,9 @@ export class AnalyticsApi {
     });
     return data;
   }
+
+  async seedDemoData(): Promise<ApiResponse<{ seeded: boolean; orders_created: number; products_created: number }>> {
+    const { data } = await this.client.post<ApiResponse<{ seeded: boolean; orders_created: number; products_created: number }>>('/analytics/seed-demo');
+    return data;
+  }
 }

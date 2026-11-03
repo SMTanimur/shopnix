@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import { Users, AlertTriangle, ShieldCheck, Phone, Mail } from 'lucide-react';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -15,6 +17,7 @@ import {
 import { formatCurrency, formatDate } from '@shopnix/utils';
 
 export default function CustomersPage() {
+  const router = useRouter();
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [highRiskFilter, setHighRiskFilter] = useState<boolean | undefined>(undefined);
@@ -48,7 +51,7 @@ export default function CustomersPage() {
         const { name, phone_number, email } = row.original;
         return (
           <div>
-            <div className="font-semibold text-foreground">{name}</div>
+            <Link href={`/customers/${row.original.id}`} className="font-bold text-foreground hover:text-primary hover:underline">{name}</Link>
             <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono mt-0.5">
               <span className="flex items-center gap-1">
                 <Phone className="h-3 w-3" />
@@ -169,6 +172,7 @@ export default function CustomersPage() {
         columns={columns}
         data={customers}
         isLoading={isLoading}
+        onRowClick={(c) => router.push(`/customers/${c.id}`)}
         emptyTitle="No customer profiles found"
         emptyDescription="Customer records are auto-compiled when buyers create orders."
       />

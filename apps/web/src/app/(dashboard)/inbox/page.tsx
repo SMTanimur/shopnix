@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { api } from '../../../lib/api';
 import { PageHeader, LoadingState, ErrorState, StatusBadge } from '../../../components/shared';
+import { BrandLogo } from '../../../components/brand';
 import type { InboxConversation, InboxMessage, AIMessagingMode } from '@shopnix/types';
 import { formatDate, formatCurrency } from '@shopnix/utils';
 
@@ -211,7 +212,8 @@ export default function InboxPage() {
                     </p>
 
                     <div className="flex items-center gap-2 mt-1.5">
-                      <span className="px-1.5 py-0.5 rounded-sm bg-muted text-[10px] font-medium text-foreground uppercase">
+                      <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-muted text-[10px] font-bold text-foreground">
+                        <BrandLogo brand={conv.channel} size={14} />
                         {conv.channel === 'whatsapp' ? 'WhatsApp' : 'Messenger'}
                       </span>
 

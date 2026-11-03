@@ -2,7 +2,9 @@ export type CourierProviderName =
   | 'steadfast'
   | 'pathao'
   | 'redx'
+  | 'paperfly'
   | 'ecourier'
+  | 'carrybee'
   | 'sandbox';
 
 export interface CourierConfiguration {
@@ -27,7 +29,7 @@ export interface ConsignmentRequest {
   recipient_zone?: string;
   recipient_area?: string;
   cod_amount: number;
-  item_weight?: number; // In kg or grams depending on provider
+  item_weight?: number;
   item_description?: string;
   special_instruction?: string;
 }
@@ -51,6 +53,25 @@ export interface TrackingResponse {
     timestamp: string;
     note?: string;
   }>;
+}
+
+export interface CourierCarrierRatio {
+  provider: CourierProviderName;
+  total_parcels: number;
+  delivered_parcels: number;
+  returned_parcels: number;
+  success_rate: number;
+}
+
+export interface CourierFraudCheckResponse {
+  phone_number: string;
+  total_parcels: number;
+  delivered_parcels: number;
+  returned_parcels: number;
+  success_rate: number;
+  risk_level: 'trusted' | 'moderate' | 'high_risk';
+  ai_recommendation: string;
+  carriers: CourierCarrierRatio[];
 }
 
 export interface ICourierProvider {

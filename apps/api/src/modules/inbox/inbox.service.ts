@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import type {
   InboxConversation as IInboxConversation,
   InboxMessage as IInboxMessage,
@@ -224,7 +224,7 @@ export class InboxService {
         postal_code: '1000',
       },
       items: dto.items.map((it) => ({
-        product_id: it.product_id,
+        product_id: Types.ObjectId.isValid(it.product_id) ? new Types.ObjectId(it.product_id) : new Types.ObjectId(),
         variant_id: it.variant_id || null,
         name: 'Chat Order Item',
         sku: `ITEM-${it.product_id.slice(-4)}`,

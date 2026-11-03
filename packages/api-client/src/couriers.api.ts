@@ -1,5 +1,11 @@
 import type { AxiosInstance } from 'axios';
-import type { CourierConfiguration, ConsignmentResponse, TrackingResponse, ApiResponse } from '@shopnix/types';
+import type {
+  CourierConfiguration,
+  ConsignmentResponse,
+  TrackingResponse,
+  CourierFraudCheckResponse,
+  ApiResponse,
+} from '@shopnix/types';
 import type { ConfigureCourierInput, DispatchCourierInput } from '@shopnix/schemas';
 
 export class CouriersApi {
@@ -22,6 +28,13 @@ export class CouriersApi {
 
   async track(consignmentId: string): Promise<ApiResponse<TrackingResponse>> {
     const { data } = await this.client.get<ApiResponse<TrackingResponse>>(`/couriers/track/${consignmentId}`);
+    return data;
+  }
+
+  async checkFraudRisk(phone: string): Promise<ApiResponse<CourierFraudCheckResponse>> {
+    const { data } = await this.client.get<ApiResponse<CourierFraudCheckResponse>>(
+      `/couriers/fraud-check/${encodeURIComponent(phone)}`
+    );
     return data;
   }
 }

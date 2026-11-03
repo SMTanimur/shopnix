@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { AnalyticsService } from './analytics.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -43,5 +43,12 @@ export class AnalyticsController {
     const limitCount = limit ? parseInt(limit, 10) : 5;
     const top = await this.analyticsService.getTopProducts(user.organizationId, limitCount);
     return { success: true, data: top };
+  }
+
+  @Post('seed-demo')
+  @ApiOperation({ summary: 'Ensure realistic Bangladesh COD demo data is seeded for the organization' })
+  async seedDemoData(@CurrentUser() user: AuthenticatedUser) {
+    const res = await this.analyticsService.ensureDemoDataSeeded(user.organizationId);
+    return { success: true, data: res };
   }
 }

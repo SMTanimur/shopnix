@@ -27,7 +27,7 @@ export const createOrderSchema = z.object({
   items: z.array(orderItemSchema).min(1, 'Order must contain at least one item'),
   shipping_charge: z.number().min(0).default(0),
   discount_amount: z.number().min(0).default(0),
-  payment_method: z.enum(['cod', 'bkash', 'nagad', 'bank_transfer', 'card']).default('cod'),
+  payment_method: z.enum(['cod', 'bkash', 'nagad', 'rocket', 'sslcommerz', 'aamarpay', 'bank_transfer', 'card']).default('cod'),
   notes: z.string().optional(),
 });
 

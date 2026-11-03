@@ -24,6 +24,7 @@ import {
   LoadingState,
   ErrorState,
 } from '../../../components/shared';
+import { BrandLogo } from '../../../components/brand';
 import type { StoreIntegration, StorePlatform } from '@shopnix/types';
 import { formatDate } from '@shopnix/utils';
 
@@ -157,9 +158,7 @@ export default function StoresPage() {
             <div>
               <div className="flex items-start justify-between gap-3 mb-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary font-bold">
-                    {store.platform === 'shopify' ? 'SH' : store.platform === 'woocommerce' ? 'WC' : 'API'}
-                  </div>
+                  <BrandLogo brand={store.platform} size={38} className="shrink-0 rounded-lg" />
                   <div>
                     <h3 className="font-semibold text-foreground text-base leading-tight">{store.name}</h3>
                     <a
@@ -264,19 +263,20 @@ export default function StoresPage() {
               {[
                 { id: 'shopify', label: 'Shopify' },
                 { id: 'woocommerce', label: 'WooCommerce' },
-                { id: 'custom', label: 'Custom API' },
+                { id: 'daraz', label: 'Daraz BD' },
               ].map((p) => (
                 <button
                   key={p.id}
                   type="button"
                   onClick={() => setSelectedPlatform(p.id as StorePlatform)}
-                  className={`p-3 rounded-lg border text-center text-xs font-semibold cursor-pointer transition-all ${
+                  className={`p-3 rounded-xl border flex flex-col items-center gap-1.5 text-center text-xs font-bold cursor-pointer transition-all ${
                     selectedPlatform === p.id
                       ? 'border-primary bg-primary/10 text-primary shadow-xs'
                       : 'border-border bg-muted/30 text-muted-foreground hover:bg-muted'
                   }`}
                 >
-                  {p.label}
+                  <BrandLogo brand={p.id} size={26} />
+                  <span>{p.label}</span>
                 </button>
               ))}
             </div>

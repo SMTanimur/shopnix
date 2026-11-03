@@ -86,7 +86,7 @@ export default function ProductsPage() {
             </div>
             <div>
               <div className="font-semibold text-foreground hover:text-primary transition-colors">
-                <Link href={`/products/${prod.id}/edit`}>{prod.name}</Link>
+                <Link href={`/products/${prod.id}`}>{prod.name}</Link>
               </div>
               <div className="text-xs font-mono text-muted-foreground">{prod.sku}</div>
             </div>

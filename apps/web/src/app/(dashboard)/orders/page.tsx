@@ -14,6 +14,7 @@ import {
   SearchInput,
   Pagination,
   StatusBadge,
+  BrandLogo,
 } from '../../../components';
 import { formatCurrency, formatDate } from '@shopnix/utils';
 
@@ -121,16 +122,16 @@ export default function OrdersPage() {
         }
 
         return (
-          <div className="text-xs space-y-0.5">
-            <div className="flex items-center gap-1 font-semibold text-foreground capitalize">
-              <Truck className="h-3 w-3 text-primary" />
-              {courier_provider}
+          <div className="flex items-center gap-2 text-xs">
+            <BrandLogo brand={courier_provider || 'steadfast'} size={22} />
+            <div>
+              <div className="font-bold text-foreground capitalize">{courier_provider}</div>
+              {consignment_id && (
+                <div className="text-[10px] font-mono text-muted-foreground truncate max-w-[120px]">
+                  {consignment_id}
+                </div>
+              )}
             </div>
-            {consignment_id && (
-              <div className="text-[11px] font-mono text-muted-foreground truncate max-w-[120px]">
-                {consignment_id}
-              </div>
-            )}
           </div>
         );
       },
