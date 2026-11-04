@@ -4,6 +4,7 @@ import { StoreIntegration, StoreIntegrationSchema } from './schemas/store-integr
 import { StoreSyncLog, StoreSyncLogSchema } from './schemas/store-sync-log.schema';
 import { Product, ProductSchema } from '../products/product.schema';
 import { Order, OrderSchema } from '../orders/order.schema';
+import { Customer, CustomerSchema } from '../customers/customer.schema';
 import { ShopifyConnector } from './connectors/shopify.connector';
 import { WooCommerceConnector } from './connectors/woocommerce.connector';
 import { CustomApiConnector } from './connectors/custom-api.connector';
@@ -18,6 +19,7 @@ import { AIModule } from '../ai/ai.module';
       { name: StoreSyncLog.name, schema: StoreSyncLogSchema },
       { name: Product.name, schema: ProductSchema },
       { name: Order.name, schema: OrderSchema },
+      { name: Customer.name, schema: CustomerSchema },
     ]),
     AIModule,
   ],

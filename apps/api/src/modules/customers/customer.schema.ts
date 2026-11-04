@@ -30,6 +30,8 @@ export class CustomerAddressSchema {
 @Schema({
   collection: 'customers',
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  toJSON: { virtuals: true, versionKey: false },
+  toObject: { virtuals: true },
 })
 export class Customer {
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Organization', required: true, index: true })

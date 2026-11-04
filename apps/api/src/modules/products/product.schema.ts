@@ -31,6 +31,8 @@ export class VariantOptionSchema {
 @Schema({
   collection: 'products',
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  toJSON: { virtuals: true, versionKey: false },
+  toObject: { virtuals: true },
 })
 export class Product {
   @Prop({
@@ -40,6 +42,17 @@ export class Product {
     index: true,
   })
   organization_id!: MongooseSchema.Types.ObjectId;
+
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'StoreIntegration',
+    default: null,
+    index: true,
+  })
+  store_id?: MongooseSchema.Types.ObjectId;
+
+  @Prop({ default: null })
+  source_platform?: string;
 
   @Prop({ required: true, trim: true })
   name!: string;

@@ -13,7 +13,7 @@ import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { ZodValidationPipe } from '../../common/pipes/zod-validation.pipe';
-import type { AuthenticatedUser } from '@shopnix/types';
+import type { AuthenticatedUser, OrderStatus } from '@shopnix/types';
 import {
   connectStoreSchema,
   updateStoreSchema,
@@ -56,7 +56,7 @@ export class StoresController {
     @Body() dto: ConnectStoreInput
   ) {
     const data = await this.storesService.connectStore(user.organizationId, dto);
-    return { success: true, data, message: 'Store connected successfully' };
+    return { success: true, data, message: 'Store connected and initial sync completed' };
   }
 
   @Patch(':id')
@@ -90,6 +90,61 @@ export class StoresController {
     @Body() dto: TriggerStoreSyncInput
   ) {
     const data = await this.storesService.triggerSync(user.organizationId, id, dto);
+    return { success: true, data };
+  }
+
+  @Get(':id/products')
+  @ApiOperation({ summary: 'List products synced from a specific connected store' })
+  async getStoreProducts(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('id') id: string
+  ) {
+    const data = await this.storesService.getStoreProducts(user.organizationId, id);
+    return { success: true, data };
+  }
+
+  @Patch(':id/products/:productId')
+  @ApiOperation({ summary: 'Update stock or price of a store-synced product' })
+  async updateStoreProduct(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('id') id: string,
+    @Param('productId') productId: string,
+    @Body() body: { stock_quantity?: number; regular_price?: number }
+  ) {
+    const data = await this.storesService.updateStoreProductStock(
+      user.organizationId,
+      id,
+      productId,
+      body
+    );
+    return { success: true, data };
+  }
+
+  @Get(':id/orders')
+  @ApiOperation({ summary: 'List orders imported from a specific connected store' })
+  async getStoreOrders(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('id') id: string
+  ) {
+    const data = await this.storesService.getStoreOrders(user.organizationId, id);
+    return { success: true, data };
+  }
+
+  @Patch(':id/orders/:orderId/status')
+  @ApiOperation({ summary: 'Control and update status of an order imported from a connected store' })
+  async updateStoreOrderStatus(
+    @CurrentUser() user: AuthenticatedUser,
+    @Param('id') id: string,
+    @Param('orderId') orderId: string,
+    @Body() body: { status: OrderStatus; note?: string }
+  ) {
+    const data = await this.storesService.updateStoreOrderStatus(
+      user.organizationId,
+      id,
+      orderId,
+      body.status,
+      body.note
+    );
     return { success: true, data };
   }
 

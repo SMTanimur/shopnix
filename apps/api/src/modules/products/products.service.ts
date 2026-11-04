@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Product, ProductDocument } from './product.schema';
@@ -81,6 +81,10 @@ export class ProductsService {
     organizationId: string | Types.ObjectId,
     id: string
   ): Promise<ProductDocument> {
+    if (!id || !Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid product ID');
+    }
+
     const product = await this.productModel
       .findOne({
         _id: new Types.ObjectId(id),
@@ -134,6 +138,9 @@ export class ProductsService {
     id: string,
     input: UpdateProductInput
   ): Promise<ProductDocument> {
+    if (!id || !Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid product ID');
+    }
     const orgId = new Types.ObjectId(String(organizationId));
     const prodId = new Types.ObjectId(id);
 
@@ -168,6 +175,9 @@ export class ProductsService {
     organizationId: string | Types.ObjectId,
     id: string
   ): Promise<void> {
+    if (!id || !Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid product ID');
+    }
     const updated = await this.productModel
       .findOneAndUpdate(
         {

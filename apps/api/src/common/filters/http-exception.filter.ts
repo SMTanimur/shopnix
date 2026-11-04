@@ -38,8 +38,18 @@ export class GlobalHttpExceptionFilter implements ExceptionFilter {
         errors = resObj.errors;
       }
     } else if (exception instanceof Error) {
-      message = exception.message;
-      this.logger.error(`Unhandled Exception at ${request.url}: ${exception.message}`, exception.stack);
+      if (
+        exception.name === 'BSONError' ||
+        exception.name === 'CastError' ||
+        exception.message.includes('24 character hex string')
+      ) {
+        status = HttpStatus.BAD_REQUEST;
+        error = 'Bad Request';
+        message = 'Invalid resource ID format';
+      } else {
+        message = exception.message;
+        this.logger.error(`Unhandled Exception at ${request.url}: ${exception.message}`, exception.stack);
+      }
     }
 
     if (this.fileLogger && status >= 500) {

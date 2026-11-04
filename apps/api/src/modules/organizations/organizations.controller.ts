@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Body, UseGuards } from '@nestjs/common';
+import { Controller, Get, Patch, Put, Post, Body, UseGuards } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { OrganizationsService } from './organizations.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -32,5 +32,40 @@ export class OrganizationsController {
   ) {
     const org = await this.orgsService.update(user.organizationId, input);
     return { success: true, data: org };
+  }
+
+  @Get('current/notifications')
+  @ApiOperation({ summary: 'Get real-time operational notifications for organization' })
+  async getNotifications(@CurrentUser() user: AuthenticatedUser) {
+    const data = await this.orgsService.getNotifications(user.organizationId);
+    return { success: true, data };
+  }
+
+  @Get('current/email-config')
+  @ApiOperation({ summary: 'Get email provider configuration & recent email delivery logs' })
+  async getEmailConfig(@CurrentUser() user: AuthenticatedUser) {
+    const data = await this.orgsService.getEmailConfig(user.organizationId);
+    return { success: true, data };
+  }
+
+  @Put('current/email-config')
+  @Roles('owner', 'admin')
+  @ApiOperation({ summary: 'Connect or update SMTP / Resend / SendGrid email provider settings' })
+  async updateEmailConfig(
+    @CurrentUser() user: AuthenticatedUser,
+    @Body() body: Record<string, any>
+  ) {
+    const data = await this.orgsService.updateEmailConfig(user.organizationId, body);
+    return { success: true, data, message: 'Email provider configuration saved' };
+  }
+
+  @Post('current/email-send')
+  @ApiOperation({ summary: 'Send a transactional or custom email via connected provider' })
+  async sendEmail(
+    @CurrentUser() user: AuthenticatedUser,
+    @Body() body: { to: string; subject: string; template?: string; body?: string }
+  ) {
+    const data = await this.orgsService.sendEmail(user.organizationId, body);
+    return { success: true, data, message: `Email dispatched to ${body.to}` };
   }
 }

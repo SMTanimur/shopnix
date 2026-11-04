@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { Users, AlertTriangle, ShieldCheck, Phone, Mail } from 'lucide-react';
+import { AlertTriangle, ShieldCheck, Phone, Mail } from 'lucide-react';
 import type { ColumnDef } from '@tanstack/react-table';
 import type { Customer } from '@shopnix/types';
 import { api } from '../../../lib/api';
@@ -15,6 +15,10 @@ import {
   Pagination,
 } from '../../../components';
 import { formatCurrency, formatDate } from '@shopnix/utils';
+
+function resolveCustomerId(customer: Customer): string {
+  return customer.id || (customer as any)._id || '';
+}
 
 export default function CustomersPage() {
   const router = useRouter();
@@ -49,12 +53,22 @@ export default function CustomersPage() {
       header: 'Customer Name',
       cell: ({ row }) => {
         const { name, phone_number, email } = row.original;
+        const cid = resolveCustomerId(row.original);
         return (
           <div>
-            <Link href={`/customers/${row.original.id}`} className="font-bold text-foreground hover:text-primary hover:underline">{name}</Link>
+            {cid ? (
+              <Link
+                href={`/customers/${cid}`}
+                className="font-bold text-foreground hover:text-primary hover:underline"
+              >
+                {name}
+              </Link>
+            ) : (
+              <span className="font-bold text-foreground">{name}</span>
+            )}
             <div className="flex items-center gap-2 text-xs text-muted-foreground font-mono mt-0.5">
               <span className="flex items-center gap-1">
-                <Phone className="h-3 w-3" />
+                <Phone className="h-3 w-3 text-rose-500" />
                 {phone_number}
               </span>
               {email && (
@@ -101,12 +115,12 @@ export default function CustomersPage() {
       cell: ({ row }) => {
         const isHighRisk = row.original.is_high_risk;
         return isHighRisk ? (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-300">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-rose-500/12 text-rose-700 border border-rose-500/25">
             <AlertTriangle className="h-3 w-3" />
             High Return Risk
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/12 text-emerald-700 border border-emerald-500/25">
             <ShieldCheck className="h-3 w-3" />
             Good Standing
           </span>
@@ -132,13 +146,13 @@ export default function CustomersPage() {
       />
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div className="flex items-center gap-1.5 p-1 rounded-md border border-border bg-card">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl glass-card">
           <button
             type="button"
             onClick={() => setHighRiskFilter(undefined)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all cursor-pointer ${
+            className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer ${
               highRiskFilter === undefined
-                ? 'bg-primary text-primary-foreground shadow-xs font-semibold'
+                ? 'bg-gradient-to-r from-rose-600 to-pink-600 text-white shadow-xs font-semibold'
                 : 'text-muted-foreground hover:text-foreground'
             }`}
           >
@@ -147,7 +161,7 @@ export default function CustomersPage() {
           <button
             type="button"
             onClick={() => setHighRiskFilter(true)}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all cursor-pointer ${
+            className={`px-3 py-1.5 text-xs font-medium rounded-lg transition-all cursor-pointer ${
               highRiskFilter === true
                 ? 'bg-rose-600 text-white shadow-xs font-semibold'
                 : 'text-muted-foreground hover:text-foreground'
@@ -172,7 +186,12 @@ export default function CustomersPage() {
         columns={columns}
         data={customers}
         isLoading={isLoading}
-        onRowClick={(c) => router.push(`/customers/${c.id}`)}
+        onRowClick={(c) => {
+          const cid = resolveCustomerId(c);
+          if (cid && cid !== 'undefined') {
+            router.push(`/customers/${cid}`);
+          }
+        }}
         emptyTitle="No customer profiles found"
         emptyDescription="Customer records are auto-compiled when buyers create orders."
       />

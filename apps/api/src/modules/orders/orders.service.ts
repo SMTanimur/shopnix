@@ -73,6 +73,10 @@ export class OrdersService {
     organizationId: string | Types.ObjectId,
     id: string
   ): Promise<OrderDocument> {
+    if (!id || !Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid order ID');
+    }
+
     const order = await this.orderModel
       .findOne({
         _id: new Types.ObjectId(id),

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 import { Customer, CustomerDocument } from './customer.schema';
@@ -68,6 +68,10 @@ export class CustomersService {
     organizationId: string | Types.ObjectId,
     id: string
   ): Promise<CustomerDocument> {
+    if (!id || !Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid customer ID');
+    }
+
     const customer = await this.customerModel
       .findOne({
         _id: new Types.ObjectId(id),
@@ -98,6 +102,10 @@ export class CustomersService {
     id: string,
     input: UpdateCustomerInput
   ): Promise<CustomerDocument> {
+    if (!id || !Types.ObjectId.isValid(id)) {
+      throw new BadRequestException('Invalid customer ID');
+    }
+
     const updated = await this.customerModel
       .findOneAndUpdate(
         {

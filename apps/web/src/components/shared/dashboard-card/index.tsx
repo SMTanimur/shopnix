@@ -27,14 +27,14 @@ export function DashboardCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, ease: 'easeOut' }}
       className={cn(
-        'rounded-xl border border-border/80 bg-card text-card-foreground shadow-xs hover:shadow-sm transition-shadow overflow-hidden',
+        'rounded-2xl glass-card text-card-foreground overflow-hidden',
         className
       )}
     >
       {(title || action) && (
-        <div className="flex flex-wrap items-center justify-between gap-2 px-5 py-4 border-b border-border/70 bg-muted/15">
+        <div className="flex flex-wrap items-center justify-between gap-2 px-5 py-4 border-b border-rose-500/12 bg-gradient-to-r from-rose-500/5 via-pink-500/3 to-transparent">
           <div>
-            {title && <h3 className="text-sm font-bold tracking-tight text-foreground">{title}</h3>}
+            {title && <h3 className="text-sm font-extrabold tracking-tight text-foreground">{title}</h3>}
             {description && (
               <p className="text-xs text-muted-foreground mt-0.5">{description}</p>
             )}

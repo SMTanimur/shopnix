@@ -40,9 +40,71 @@ export class OrganizationSettingsSchema {
   low_stock_alert_threshold!: number;
 }
 
+@Schema({ _id: false })
+export class EmailConfigSchema {
+  @Prop({ enum: ['smtp', 'resend', 'sendgrid'], default: 'smtp' })
+  provider!: 'smtp' | 'resend' | 'sendgrid';
+
+  @Prop({ default: false })
+  enabled!: boolean;
+
+  @Prop({ default: 'Shopnix Store' })
+  from_name!: string;
+
+  @Prop({ default: 'orders@shopnix.io' })
+  from_email!: string;
+
+  @Prop({ default: 'smtp.gmail.com' })
+  smtp_host!: string;
+
+  @Prop({ default: 587 })
+  smtp_port!: number;
+
+  @Prop({ default: '' })
+  smtp_user!: string;
+
+  @Prop({ default: '' })
+  smtp_pass!: string;
+
+  @Prop({ default: '' })
+  api_key!: string;
+
+  @Prop({ default: true })
+  notify_on_new_order!: boolean;
+
+  @Prop({ default: true })
+  notify_on_courier_dispatch!: boolean;
+}
+
+@Schema({ _id: false })
+export class EmailLogEntrySchema {
+  @Prop({ required: true })
+  id!: string;
+
+  @Prop({ required: true })
+  to!: string;
+
+  @Prop({ required: true })
+  subject!: string;
+
+  @Prop({ default: 'custom' })
+  template!: string;
+
+  @Prop({ default: 'sent' })
+  status!: string;
+
+  @Prop({ default: 'smtp' })
+  provider!: string;
+
+  @Prop({ default: Date.now })
+  sent_at!: Date;
+}
+
 @Schema({
   collection: 'organizations',
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  toJSON: { virtuals: true, versionKey: false },
+  toObject: { virtuals: true },
 })
 export class Organization {
   @Prop({ required: true, trim: true })
@@ -83,6 +145,12 @@ export class Organization {
 
   @Prop({ type: OrganizationSettingsSchema, default: () => ({}) })
   settings!: OrganizationSettingsSchema;
+
+  @Prop({ type: EmailConfigSchema, default: () => ({}) })
+  email_config!: EmailConfigSchema;
+
+  @Prop({ type: [EmailLogEntrySchema], default: [] })
+  email_logs!: EmailLogEntrySchema[];
 
   @Prop({ default: null })
   deleted_at!: Date;

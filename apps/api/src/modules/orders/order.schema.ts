@@ -69,7 +69,7 @@ export class OrderNoteSchema {
   @Prop({ required: true })
   content!: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', default: null })
   author_id!: MongooseSchema.Types.ObjectId;
 
   @Prop({ required: true })
@@ -82,6 +82,8 @@ export class OrderNoteSchema {
 @Schema({
   collection: 'orders',
   timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' },
+  toJSON: { virtuals: true, versionKey: false },
+  toObject: { virtuals: true },
 })
 export class Order {
   @Prop({
@@ -91,6 +93,17 @@ export class Order {
     index: true,
   })
   organization_id!: MongooseSchema.Types.ObjectId;
+
+  @Prop({
+    type: MongooseSchema.Types.ObjectId,
+    ref: 'StoreIntegration',
+    default: null,
+    index: true,
+  })
+  store_id?: MongooseSchema.Types.ObjectId;
+
+  @Prop({ default: null })
+  source_platform?: string;
 
   @Prop({ required: true, trim: true })
   order_number!: string;

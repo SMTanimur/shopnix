@@ -6,6 +6,9 @@ import type {
   ConnectStoreDto,
   UpdateStoreDto,
   TriggerStoreSyncDto,
+  Product,
+  Order,
+  OrderStatus,
 } from '@shopnix/types';
 
 export class StoresApi {
@@ -46,6 +49,40 @@ export class StoresApi {
 
   async getSyncLogs(storeId: string): Promise<ApiResponse<StoreSyncLog[]>> {
     const { data } = await this.axios.get<ApiResponse<StoreSyncLog[]>>(`/stores/${storeId}/logs`);
+    return data;
+  }
+
+  async getStoreProducts(storeId: string): Promise<ApiResponse<Product[]>> {
+    const { data } = await this.axios.get<ApiResponse<Product[]>>(`/stores/${storeId}/products`);
+    return data;
+  }
+
+  async updateStoreProduct(
+    storeId: string,
+    productId: string,
+    payload: { stock_quantity?: number; regular_price?: number }
+  ): Promise<ApiResponse<Product>> {
+    const { data } = await this.axios.patch<ApiResponse<Product>>(
+      `/stores/${storeId}/products/${productId}`,
+      payload
+    );
+    return data;
+  }
+
+  async getStoreOrders(storeId: string): Promise<ApiResponse<Order[]>> {
+    const { data } = await this.axios.get<ApiResponse<Order[]>>(`/stores/${storeId}/orders`);
+    return data;
+  }
+
+  async updateStoreOrderStatus(
+    storeId: string,
+    orderId: string,
+    payload: { status: OrderStatus; note?: string }
+  ): Promise<ApiResponse<Order>> {
+    const { data } = await this.axios.patch<ApiResponse<Order>>(
+      `/stores/${storeId}/orders/${orderId}/status`,
+      payload
+    );
     return data;
   }
 }
