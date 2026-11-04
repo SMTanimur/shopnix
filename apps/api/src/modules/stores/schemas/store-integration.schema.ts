@@ -10,9 +10,9 @@ export class StoreIntegration {
 
   @Prop({
     required: true,
-    enum: ['shopify', 'woocommerce', 'daraz', 'facebook', 'whatsapp', 'custom', 'custom_api'],
+    enum: ['shopify', 'woocommerce', 'daraz', 'custom', 'custom_api'],
   })
-  platform: 'shopify' | 'woocommerce' | 'daraz' | 'facebook' | 'whatsapp' | 'custom' | 'custom_api';
+  platform: 'shopify' | 'woocommerce' | 'daraz' | 'custom' | 'custom_api';
 
   @Prop({ required: true })
   name: string;
