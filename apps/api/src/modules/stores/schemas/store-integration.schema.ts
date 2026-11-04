@@ -8,8 +8,11 @@ export class StoreIntegration {
   @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'Organization', required: true, index: true })
   organization_id: MongooseSchema.Types.ObjectId;
 
-  @Prop({ required: true, enum: ['shopify', 'woocommerce', 'custom_api'] })
-  platform: 'shopify' | 'woocommerce' | 'custom_api';
+  @Prop({
+    required: true,
+    enum: ['shopify', 'woocommerce', 'daraz', 'facebook', 'whatsapp', 'custom', 'custom_api'],
+  })
+  platform: 'shopify' | 'woocommerce' | 'daraz' | 'facebook' | 'whatsapp' | 'custom' | 'custom_api';
 
   @Prop({ required: true })
   name: string;

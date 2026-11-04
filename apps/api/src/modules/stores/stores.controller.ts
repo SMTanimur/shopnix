@@ -50,10 +50,9 @@ export class StoresController {
 
   @Post()
   @ApiOperation({ summary: 'Connect a new external store (Shopify, WooCommerce, Custom API)' })
-  @UsePipes(new ZodValidationPipe(connectStoreSchema))
   async connectStore(
     @CurrentUser() user: AuthenticatedUser,
-    @Body() dto: ConnectStoreInput
+    @Body(new ZodValidationPipe(connectStoreSchema)) dto: ConnectStoreInput
   ) {
     const data = await this.storesService.connectStore(user.organizationId, dto);
     return { success: true, data, message: 'Store connected and initial sync completed' };
@@ -61,11 +60,10 @@ export class StoresController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update store integration configuration' })
-  @UsePipes(new ZodValidationPipe(updateStoreSchema))
   async updateStore(
     @CurrentUser() user: AuthenticatedUser,
     @Param('id') id: string,
-    @Body() dto: UpdateStoreInput
+    @Body(new ZodValidationPipe(updateStoreSchema)) dto: UpdateStoreInput
   ) {
     const data = await this.storesService.updateStore(user.organizationId, id, dto);
     return { success: true, data, message: 'Store configuration updated' };
@@ -83,11 +81,10 @@ export class StoresController {
 
   @Post(':id/sync')
   @ApiOperation({ summary: 'Trigger manual synchronization for products, orders or full catalog' })
-  @UsePipes(new ZodValidationPipe(triggerStoreSyncSchema))
   async triggerSync(
     @CurrentUser() user: AuthenticatedUser,
     @Param('id') id: string,
-    @Body() dto: TriggerStoreSyncInput
+    @Body(new ZodValidationPipe(triggerStoreSyncSchema)) dto: TriggerStoreSyncInput
   ) {
     const data = await this.storesService.triggerSync(user.organizationId, id, dto);
     return { success: true, data };
